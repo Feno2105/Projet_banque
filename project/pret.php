@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <title>Gestion des étudiants</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    input, button { margin: 5px; padding: 5px; }
-    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f2f2f2; }
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    input,
+    button {
+      margin: 5px;
+      padding: 5px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
   </style>
 </head>
+
 <body>
+
   <head>
-    <?php include("fragment/navigation.php"); ?>
+    <?php include 'fragment/navigation.php'; ?>
   </head>
 
   <h1>Gestion des étudiants</h1>
@@ -42,6 +67,8 @@
     <tbody></tbody>
   </table>
 
+    <a href="/prets/accept/"><button>Valider</button></a>
+
   <script>
     const apiBase = "http://localhost/Projet_banque/project/ws";
 
@@ -64,28 +91,66 @@
         data.forEach(e => {
           const tr = document.createElement("tr");
           tr.innerHTML = `
-            <td>${e.email}</td>
-            
-            <td>${e.nom_type_pret}</td>
-            <td>${e.montant}</td
-            <td>${e.reste_a_payer}</td>
-            <td>${e.date_debut}</td>
-            <td>${e.libelle}</td>
-            
-            
-            <td>
-              <button>✏️</button>
-              <button>🗑️</button>
-            </td>
-          `;
+  <td>${e.email}</td>
+  <td>${e.nom_type_pret}</td>
+  <td>${e.montant}</td>
+  <td>${e.reste_a_payer}</td>
+  <td>${e.date_debut}</td>
+  <td>
+    ${e.libelle === 'En attente' 
+      ? ` 
+        <button onclick="valider(${e.id_pret})">Valider</button></a>
+        <button onclick="refuser(${e.id_pret})">Refuser</button>
+      ` 
+      : e.libelle
+    }
+  </td>
+  <td>
+    <button>✏️</button>
+    <button>🗑️</button>
+  </td>
+`;
           tbody.appendChild(tr);
         });
       });
     }
 
+    // Empêcher le double-clic
+function valider(id) {
+  const btn = event.target;
+  btn.disabled = true;
+  
+  ajax("GET", `/prets/accept/${id}`, null,
+    (response) => {
+      alert(response.message);
+      chargerEtudiants();
+    },
+    (error) => {
+      btn.disabled = false;
+      alert("Erreur: " + (error.message || "Opération échouée"));
+    }
+  );
+}
+
+function refuser(id) {
+  const btn = event.target;
+  btn.disabled = true;
+  
+  ajax("GET", `/prets/refuse/${id}`, null,
+    (response) => {
+      alert(response.message);
+      chargerEtudiants();
+    },
+    (error) => {
+      btn.disabled = false;
+      alert("Erreur: " + (error.message || "Opération échouée"));
+    }
+  );
+}
 
     chargerEtudiants();
   </script>
 
 </body>
+
 </html>
