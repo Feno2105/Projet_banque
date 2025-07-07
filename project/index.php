@@ -12,6 +12,9 @@
   </style>
 </head>
 <body>
+  <head>
+    <?php include("fragment/navigation.php"); ?>
+  </head>
 
   <h1>Gestion des étudiants</h1>
 
@@ -34,7 +37,7 @@
   </table>
 
   <script>
-    const apiBase = "http://localhost/tp-flightphp-crud-MVC/tp-flightphp-crud/ws";
+    const apiBase = "http://localhost/Projet_banque/project/ws";
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();
