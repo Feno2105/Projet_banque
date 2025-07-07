@@ -12,12 +12,9 @@
   </style>
 </head>
 <body>
-  <head>
-    <?php include("fragment/navigation.php"); ?>
-  </head>
 
   <h1>Gestion des fonds de l'établissement</h1>
-  <a href="type_pret.html">Type pret</a>
+  <a href=""></a>
   <div>
     <input type="hidden" id="id_fonds">
     <input type="date" id="date_ajout" placeholder="Date d'ajout">
