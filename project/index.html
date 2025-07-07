@@ -34,7 +34,7 @@
   </table>
 
   <script>
-    const apiBase = "http://localhost/tp-flightphp-crud-MVC/tp-flightphp-crud/ws";
+    const apiBase = "http://localhost/Projet_banque/project/ws";
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();
@@ -48,21 +48,21 @@
       xhr.send(data);
     }
 
-    function chargerEtudiants() {
-      ajax("GET", "/etudiants", null, (data) => {
+    function chargerClients() {
+      ajax("GET", "/client", null, (data) => {
         const tbody = document.querySelector("#table-etudiants tbody");
         tbody.innerHTML = "";
         data.forEach(e => {
           const tr = document.createElement("tr");
           tr.innerHTML = `
-            <td>${e.id}</td>
-            <td>${e.nom}</td>
-            <td>${e.prenom}</td>
+            <td>${e.id_client}</td>
+            <td>${e.nom_client}</td>
             <td>${e.email}</td>
-            <td>${e.age}</td>
+            <td>${e.adresse}</td>
+            <td>${e.date_inscription}</td>
             <td>
               <button onclick='remplirFormulaire(${JSON.stringify(e)})'>✏️</button>
-              <button onclick='supprimerEtudiant(${e.id})'>🗑️</button>
+              <button onclick='supprimerClient(${e.id_client})'>🗑️</button>
             </td>
           `;
           tbody.appendChild(tr);
@@ -82,12 +82,12 @@
       if (id) {
         ajax("PUT", `/etudiants/${id}`, data, () => {
           resetForm();
-          chargerEtudiants();
+          chargerClients();
         });
       } else {
         ajax("POST", "/etudiants", data, () => {
           resetForm();
-          chargerEtudiants();
+          chargerClients();
         });
       }
     }
@@ -100,10 +100,10 @@
       document.getElementById("age").value = e.age;
     }
 
-    function supprimerEtudiant(id) {
-      if (confirm("Supprimer cet étudiant ?")) {
-        ajax("DELETE", `/etudiants/${id}`, null, () => {
-          chargerEtudiants();
+    function supprimerClient(id) {
+      if (confirm("Supprimer ce client ?")) {
+        ajax("DELETE", `/client/${id}`, null, () => {
+          chargerClients();
         });
       }
     }
@@ -116,7 +116,8 @@
       document.getElementById("age").value = "";
     }
 
-    chargerEtudiants();
+    // Appel initial
+    chargerClients();
   </script>
 
 </body>
