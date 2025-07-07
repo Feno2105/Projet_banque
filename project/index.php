@@ -12,6 +12,9 @@
   </style>
 </head>
 <body>
+  <head>
+    <?php include("fragment/navigation.php"); ?>
+  </head>
 
   <h1>Gestion des étudiants</h1>
 
