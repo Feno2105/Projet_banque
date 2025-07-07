@@ -37,10 +37,12 @@ CREATE TABLE IF NOT EXISTS client (
     date_inscription DATE DEFAULT CURRENT_DATE
 );
 
+-- Création de la table statut_pret
 CREATE TABLE IF NOT EXISTS statut_pret (
     id_statut_pret INT AUTO_INCREMENT PRIMARY KEY,
-    libelle VARCHAR(100) NOT NULL
-);
+    libelle VARCHAR(100) NOT NULL,
+    UNIQUE KEY (libelle)  -- Évite les doublons de libellés
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Table 4 : Prêts accordés aux clients
 CREATE TABLE IF NOT EXISTS pret (
@@ -51,6 +53,7 @@ CREATE TABLE IF NOT EXISTS pret (
     reste_a_payer DECIMAL(15,2),
     date_debut DATE DEFAULT CURRENT_DATE,
     statut INT,
+    isValidated BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (client_id) REFERENCES client(id_client),
     FOREIGN KEY (type_pret_id) REFERENCES type_pret(id_type_pret),
     FOREIGN KEY (statut) REFERENCES statut_pret(id_statut_pret)
