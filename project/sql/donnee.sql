@@ -14,11 +14,17 @@ VALUES
   ('Crédit Auto', 4.80, 60, 3000.00, 50000.00),
   ('Microcrédit', 7.00, 12, 100.00, 1500.00);
 
-
+-- Insertion des statuts principaux
 INSERT INTO statut_pret (libelle) VALUES
-  ('En cours'),   -- id = 1
-  ('Terminé'),    -- id = 2
-  ('En retard');  -- id = 3
+('En attente'),
+('Accepté'),
+('Refusé'),
+('Débloqué'),
+('En remboursement'),
+('En retard'),
+('Clôturé'),
+('Annulé')
+ON DUPLICATE KEY UPDATE libelle = libelle;  -- Ignore si le libellé existe déjà
 
 
 INSERT INTO pret (client_id, type_pret_id, montant, reste_a_payer, date_debut, statut)
