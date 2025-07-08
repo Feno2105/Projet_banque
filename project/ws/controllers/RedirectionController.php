@@ -1,5 +1,18 @@
 <?php
 class RedirectionController {
+    
+    public static function pretPdf() {
+        $title = "Show pret pdf";
+        $content = __DIR__ . '/../views/pretPdf.php';
+        include __DIR__ . '/../template.php';
+    }
+    
+    public static function show() {
+        $title = "Show pret";
+        $content = __DIR__ . '/../views/show_pret.php';
+        include __DIR__ . '/../template.php';
+    }
+
     public static function home() {
         $title = "Accueil";
         $content = __DIR__ . '/../views/acceuil.php';

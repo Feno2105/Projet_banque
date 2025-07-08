@@ -141,6 +141,7 @@
           <td>
             <button>✏️</button>
             <button>🗑️</button>
+            <a href="show_pret_?id_pret=${e.id_pret}"><button>Plus d info</button></a>
           </td>
         `;
         tbody.appendChild(tr);
