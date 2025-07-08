@@ -14,6 +14,9 @@ class Interet
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public static function getByMoisEtAnne($mois,$annee){
+    
+    }
     public static function save($id,$data){
     $db = getDB();
     $TypePret = TypePretModel::getById($data->type_pret_id);
@@ -51,50 +54,13 @@ class Interet
        $stmt2->bindParam(':annee', $annee, PDO::PARAM_INT);
        $stmt2->bindParam(':valeur', $interet['interet_total'], PDO::PARAM_STR);
        $stmt2->execute();
+       return $db->lastInsertId();
     }
-    public static function getByIdParMois($id,$data)
+    public static function getByIdParMois($data)
     {
         $db = getDB();
         $stmt = $db->prepare("SELECT * FROM interet_par_mois WHERE id_pret = ? AND mois = ? AND annee = ?");
-        $stmt->execute([$id,$data->mois, $data->annee]);
+        $stmt->execute([$data->id_pret,$data->mois, $data->annee]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public static function accept($id)
-    {
-        $db = getDB();
-
-        $status = Status::findByLibelle('Accepté');
-
-        if (!$status) {
-            throw new Exception('Status "accepté" not found');
-        }
-
-        $stmt = $db->prepare('UPDATE pret SET statut = :id_status WHERE id_pret = :id');
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':id_status', $status['id_statut_pret'], PDO::PARAM_INT);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
     }
-
-    public static function refuse($id)
-    {
-        $db = getDB();
-
-        $status = Status::findByLibelle('Refusé');
-
-        if (!$status) {
-            throw new Exception('Status "Refusé" not found');
-        }
-        $stmt = $db->prepare('UPDATE pret SET statut = :id_status WHERE id_pret = :id');
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':id_status', $status['id_statut_pret'], PDO::PARAM_INT);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}

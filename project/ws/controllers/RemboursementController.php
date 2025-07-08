@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../models/RemboursementModel.php';
 require_once __DIR__ . '/../helpers/Utils.php';
 require_once __DIR__ . '/../models/Pret.php';
+require_once __DIR__ . '/../models/Interet.php';
 
 
 
@@ -37,7 +38,9 @@ class RemboursementController {
             if (Pret::remboursement($id_pret,true)) {
                 $inserted[] = RemboursementModel::create($entry);
             }
-            
+            if(!Interet::getByIdParMois($entry)){
+                $inserted[] = Interet::saveInteretParRemboursement($id_pret,$entry);
+            }
             $mois++;
             if ($mois > 12) {
                 $mois = 1;
