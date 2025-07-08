@@ -15,7 +15,11 @@ class PretController {
     public static function save(){
         $data = Flight::request()->data;
         $id = Pret::save($data);
-        $dateFormatted = Utils::formatDate('2025-01-01'); // Optionnel selon ton besoin
+        if (isset($id['error'])) {
+            Flight::json(['message' => $id['error']]);
+            return;
+        }
+        $dateFormatted = Utils::formatDate('2025-01-01');
         Flight::json(['message' => 'Prêt ajouté']);
     }
     public static function getAll() {

@@ -5,6 +5,7 @@ require_once __DIR__.'/../db.php';
 require_once __DIR__.'/../models/Status.php';
 require_once __DIR__.'/../models/TypePretModel.php';
 require_once __DIR__.'/../models/Interet.php';
+require_once __DIR__.'/../models/Client.php';
 
 class Pret
 {
@@ -25,6 +26,13 @@ class Pret
     public static function save($data){
         $db = getDB();
         $TypePret = TypePretModel::getById($data->type_pret_id);
+        if ($TypePret['montant_min']>$data->montant|| $TypePret['montant_max']<$data->montant) {        
+            return ['error' => 'Montant invalide'];
+        }
+        $client = Client::getById($data->client_id);
+        if (!$client) {
+            return ['error' => 'Client non trouver']; 
+        }
         $mesualite = $data->montant / $TypePret['duree_mois'];
         $mensualite = $mesualite + ($mesualite * ($TypePret['taux_interet'] / 1200))+($mesualite * ($TypePret['valeur_assurance'] / 1200));
         $montant_avec_pret = $mensualite*$TypePret['duree_mois'];
@@ -74,6 +82,27 @@ class Pret
             return false;
         }
     }
+    public static function verifyPresenece($id_pret, $mois, $annee) {
+        $db = getDB();
+    
+        $date_cible = sprintf('%04d-%02d-01', $annee, $mois);
+    
+        $stmt = $db->prepare('
+            SELECT * FROM presence 
+            WHERE id_pret = :id_pret 
+            AND date_debut <= :date_cible
+            LIMIT 1
+        ');
+        $stmt->execute([
+            ':id_pret' => $id_pret,
+            ':date_cible' => $date_cible
+        ]);
+    
+        $presence = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        return $presence !== false;
+    }
+    
     public static function remboursement($id,$assurance)
     {
         $db = getDB();

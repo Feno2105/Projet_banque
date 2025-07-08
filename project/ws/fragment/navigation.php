@@ -28,6 +28,9 @@
             <a href="simulation_" class="nav-link">
                 <i class="fas fa-percentage"></i>
                 <span>Proceder a une simulation</span>
+            <a href="fondtab_" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Fonds tableau</span>
             </a>
         </div>
         <div class="nav-footer">
