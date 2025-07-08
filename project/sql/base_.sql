@@ -135,7 +135,12 @@ CREATE VIEW view_pret AS
             statut_pret s ON s.id_statut_pret = p.statut
         JOIN type_pret tp ON tp.id_type_pret = p.type_pret_id;
 
-        
+CREATE OR REPLACE VIEW vue_interet_global AS
+SELECT 
+    p.id_pret,
+    i.valeur AS interet_total
+FROM pret p
+JOIN interet i ON i.id_pret = p.id_pret;
 
 SELECT * FROM view_pret;
 CREATE OR REPLACE VIEW vue_interet_global AS

@@ -15,7 +15,7 @@ class Interet
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public static function getByMoisEtAnne($mois,$annee){
-    
+        
     }
     public static function save($id,$data){
     $db = getDB();
