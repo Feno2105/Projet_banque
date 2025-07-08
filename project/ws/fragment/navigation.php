@@ -4,4 +4,5 @@
     <a href="fonds_">Fonds</a>
     <a href="typePret_">Types de Prêts</a>
     <a href="interets_">Interets</a>
+    <a href="simulation_">Simmuler</a>
 </nav>

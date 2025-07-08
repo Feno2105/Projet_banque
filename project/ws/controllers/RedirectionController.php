@@ -12,7 +12,12 @@ class RedirectionController {
         $content = __DIR__ . '/../views/show_pret.php';
         include __DIR__ . '/../template.php';
     }
-
+    public static function simulation() {
+        $title = "Show pret";
+        $content = __DIR__ . '/../views/simulation.php';
+        include __DIR__ . '/../template.php';
+    }
+    
     public static function home() {
         $title = "Accueil";
         $content = __DIR__ . '/../views/acceuil.php';
