@@ -10,7 +10,7 @@ class Interet
     public static function getAll()
     {
         $db = getDB();
-        $stmt = $db->query('select * from view_pret ORDER BY date_debut DESC');
+        $stmt = $db->query('select * from view_interet ORDER BY date_debut DESC');
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -27,7 +27,7 @@ class Interet
 
     $mois_debut = $mois;
     $annee_debut = $annee;
-    $mois_fin = $mois + $TypePret['duree_mois'] - 1;
+    $mois_fin = $mois + $TypePret['duree_mois'];
     $annee_fin = $annee_debut;
     if ($mois_fin > 12) {
         $annee_fin += 1;
