@@ -1,36 +1,58 @@
-<style>
-  body {
-    font-family: sans-serif;
-    padding: 20px;
-  }
+<div class="bank-loan-container">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fas fa-hand-holding-usd icon-lg me-2"></i>
+            Gestion des prêts
+        </h1>
+    </div>
 
-  input,
-  button {
-    margin: 5px;
-    padding: 5px;
-  }
+    <div class="card loan-form-card mb-5">
+        <div class="card-header">
+            <h2 class="mb-0"><i class="fas fa-plus-circle me-2"></i>Nouveau prêt</h2>
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="client-choix">Client :</label>
+                    <select class="form-control" name="client_id" id="client-choix" required>
+                        <option value="">Sélectionner un client</option>
+                    </select>
+                </div>
 
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 20px;
-  }
+                <div class="form-group col-md-6">
+                    <label for="type-pret-choix">Type de prêt :</label>
+                    <select class="form-control" name="type_pret_id" id="type-pret-choix" required>
+                        <option value="">Sélectionner un type</option>
+                    </select>
+                </div>
+            </div>
 
-  th,
-  td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-  }
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Montant :</label>
+                    <div class="input-group">
+                        <input type="number" step="0.01" class="form-control" name="montant" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">€</span>
+                        </div>
+                    </div>
+                </div>
 
-  th {
-    background-color: #f2f2f2;
-  }
+                <div class="form-group col-md-6">
+                    <label>Date de début :</label>
+                    <input type="date" class="form-control" name="date_debut" value="<?= date('Y-m-d') ?>">
+                </div>
+            </div>
 
-  .search-container {
-    margin: 20px 0;
-  }
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" onclick="ajouterPret()">
+                    <i class="fas fa-save me-2"></i>Ajouter le prêt
+                </button>
+            </div>
+        </div>
+    </div>
 
+<<<<<<< Updated upstream
   #search-input {
     width: 300px;
     padding: 8px;
@@ -84,6 +106,44 @@
     </thead>
     <tbody></tbody>
   </table>
+=======
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="mb-0"><i class="fas fa-list me-2"></i>Liste des prêts</h2>
+            <div class="search-container">
+                <div class="input-group">
+                    <input type="text" id="search-input" class="form-control" 
+                           placeholder="Rechercher par email, type, statut..." 
+                           oninput="filterLoans()">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="table-etudiants">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Client</th>
+                            <th>Type</th>
+                            <th>Montant</th>
+                            <th>Reste à payer</th>
+                            <th>Mensualité</th>
+                            <th>Date début</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+>>>>>>> Stashed changes
   <script>
     const apiBase = "http://localhost/Projet_banque/project/ws";
     let allLoans = []; // Variable pour stocker tous les prêts
@@ -138,7 +198,10 @@
             }
           </td>
           <td>
+<<<<<<< Updated upstream
             <a href="rembourser_?id=${e.id_pret}"><button>Rembourser</button></a>
+=======
+>>>>>>> Stashed changes
             <a href="show_pret_?id_pret=${e.id_pret}"><button>Plus d info</button></a>
           </td>
         `;
@@ -267,5 +330,3 @@
     chargerClients();
     chargerTypePrets();
   </script>
-
-</body>
