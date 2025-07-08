@@ -5,6 +5,7 @@ require_once __DIR__.'/../db.php';
 require_once __DIR__.'/../models/Status.php';
 require_once __DIR__.'/../models/TypePretModel.php';
 require_once __DIR__.'/../models/Interet.php';
+require_once __DIR__.'/../models/Client.php';
 
 class Pret
 {
@@ -25,6 +26,14 @@ class Pret
     public static function save($data){
         $db = getDB();
         $TypePret = TypePretModel::getById($data->type_pret_id);
+        if ($TypePret['montant_min']>$data->montant|| $TypePret['montant_max']<$data->montant) {
+            Flight::json(['message' => 'Montant invalide']);        
+            return;
+        }
+        $client = Client::getById($data->client_id);
+        if (!$client) {
+            Flight::json(['message' => 'Client non trouver']);        
+        }
         $mesualite = $data->montant / $TypePret['duree_mois'];
         $mensualite = $mesualite + ($mesualite * ($TypePret['taux_interet'] / 1200))+($mesualite * ($TypePret['valeur_assurance'] / 1200));
         $montant_avec_pret = $mensualite*$TypePret['duree_mois'];
