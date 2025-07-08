@@ -74,7 +74,7 @@
     
 
   <script>
-    const apiBase = "http://localhost/Projet_banque/project/ws";
+    const apiBase = "/Projet_banque/project/ws";
     let allLoans = []; // Variable pour stocker tous les prêts
 
     function ajax(method, url, data, callback, errorCallback) {

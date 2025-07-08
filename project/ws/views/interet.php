@@ -126,7 +126,7 @@
       anneeFin: inputs[3].value
     };
     
-    const apiBase = "http://localhost/Projet_banque/project/ws";
+    const apiBase = "/Projet_banque/project/ws";
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();

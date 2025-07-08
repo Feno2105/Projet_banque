@@ -62,7 +62,7 @@
 </table>
 
 <script>
-  const apiBase = "http://localhost/Projet_banque/project/ws";
+  const apiBase = "/Projet_banque/project/ws";
   let typesPret = [];
   let prets = [];
   let pretIdCounter = 1;

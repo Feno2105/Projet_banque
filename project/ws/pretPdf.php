@@ -9,7 +9,7 @@ function convert($str){
 // Vérifie les paramètres
 if (isset($_GET['id_pret']) && isset($_GET['action']) && $_GET['action'] === "pdf") {
     $id_pret = $_GET['id_pret'];
-    $apiUrl = "http://localhost/Projet_banque/project/ws/prets/$id_pret";
+    $apiUrl = "/Projet_banque/project/ws/prets/$id_pret";
 
     $json = @file_get_contents($apiUrl);
     if ($json === false) {
