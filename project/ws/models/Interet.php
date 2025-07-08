@@ -4,11 +4,9 @@ require_once __DIR__.'/../db.php';
 
 require_once __DIR__.'/../models/Status.php';
 require_once __DIR__.'/../models/TypePretModel.php';
-require_once __DIR__.'/../models/Interet.php';
 
-class Pret
+class Interet
 {
-
     public static function getAll()
     {
         $db = getDB();
@@ -16,18 +14,32 @@ class Pret
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public static function save($data){
-        $db = getDB();
-        $TypePret = TypePretModel::getById($data->type_pret_id);
-        $mesualite = $data->montant / $TypePret['duree_mois'];
-        $mensualite = $mesualite + ($mesualite * ($TypePret['taux_interet'] / 1200));
-        $statut = 1;
-        $stmt = $db->prepare("INSERT INTO pret (client_id, type_pret_id,mensualite,montant, reste_a_payer,date_debut,statut) VALUES (?, ?, ?, ?,?,?,?)");
-        $stmt->execute([$data->client_id, $data->type_pret_id, $mensualite, $data->montant, $data->montant, $data->date_debut,$statut]);
-        $id_pret = $db->lastInsertId();
-        $interet = Interet::save($id_pret, $data);
-        return $id_pret;
+    public static function save($id,$data){
+    $db = getDB();
+    $TypePret = TypePretModel::getById($data->type_pret_id);
+    $mensualite = $data->montant / $TypePret['duree_mois'];
+    $interet = ($mensualite * ($TypePret['taux_interet'] / 1200));
+
+    // Extraction de la date
+    $date = new DateTime($data->date_debut);
+    $annee = (int)$date->format('Y');
+    $mois = (int)$date->format('m');
+
+    $mois_debut = $mois;
+    $annee_debut = $annee;
+    $mois_fin = $mois + $TypePret['duree_mois'] - 1;
+    $annee_fin = $annee_debut;
+    if ($mois_fin > 12) {
+        $annee_fin += 1;
+        $mois_fin = ($mois_fin - 1) % 12 + 1;
     }
+    $statut = 1;
+    // Insertion de l'intérêt
+    $stmt2 = $db->prepare("INSERT INTO interet (id_pret, mois_debut, annee_debut, mois_fin, annee_fin, valeur) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt2->execute([$id, $mois_debut, $annee_debut, $mois_fin, $annee_fin, $interet]);
+
+    return $db->lastInsertId();
+}
     public static function accept($id)
     {
         $db = getDB();

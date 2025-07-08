@@ -170,7 +170,7 @@
         data.forEach(t => {
           const option = document.createElement("option");
           option.value = t.id_type_pret;
-          option.textContent = t.nom_type_pret + "(" + t.taux_interet + "% " + "" + t.duree + " mois)";
+          option.textContent = t.nom_type_pret + "(" + t.taux_interet + "% " + "" + t.duree_mois + " mois)";
           select.appendChild(option);
         });
         }, (error) => {
@@ -190,8 +190,10 @@
 
       ajax("POST", "/prets", data, () => {
         alert("Prêt ajouté !");
-        resetFormPret();
-        chargerPrets(); // Recharge la liste des prêts si tu as une fonction pour ça
+    resetFormPret();
+    chargerPrets();
+    chargerClients();
+    chargerTypePrets();// Recharge la liste des prêts si tu as une fonction pour ça
       });
     }
 

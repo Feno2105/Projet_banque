@@ -91,6 +91,16 @@ CREATE TABLE IF NOT EXISTS fonds_client (
     FOREIGN KEY (client_id) REFERENCES client(id_client)
 );
 
+CREATE TABLE interet(
+    id_interet INT PRIMARY KEY AUTO_INCREMENT,
+    id_pret INT ,
+    mois_debut INT,
+    annee_debut INT,
+    mois_fin INT,
+    annee_fin INT,
+    valeur DECIMAL(15,2),
+    FOREIGN KEY (id_pret) REFERENCES pret(id_pret)
+);
 -- PRET FULL INFO
 
 -- VIEWS
