@@ -1,24 +1,41 @@
-    <div>
-        <div>[Photo du client]</div>
-        <div>
-            <h1><p id="nom"></p></h1>
-            <div>Contact : <p id="contact"></p></div>
-            <div>Email : <p id="email"></p></div>
+<div class="client-profile-container">
+    <div class="profile-header">
+        <div class="profile-photo">
+            <div class="photo-placeholder">
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+        <div class="profile-info">
+            <h1 class="client-name" id="nom"></h1>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span id="contact"></span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span id="email"></span>
+                </div>
+            </div>
         </div>
     </div>
-    <br>
-    <div>
-        <div>
-            <h2>Adresse</h2>
-            <div><p id="adresse"></div>
+
+    <div class="profile-details">
+        <div class="detail-card">
+            <h2><i class="fas fa-map-marker-alt"></i> Adresse</h2>
+            <div class="detail-content">
+                <p id="adresse"></p>
+            </div>
         </div>
 
-        <div>
-            <h2>Inscrit depuis :</h2>
-            <div>le <p id="date"></p></div>
+        <div class="detail-card">
+            <h2><i class="fas fa-calendar-alt"></i> Inscription</h2>
+            <div class="detail-content">
+                <p id="date"></p>
+            </div>
         </div>
     </div>
-</body>
+</div>
   <script>
     const apiBase = "http://localhost/Projet_banque/project/ws";
 
@@ -34,21 +51,26 @@
           xhr.send(data ? JSON.stringify(data) : null);
         }
     // fonction pour charger les données du client
-    document.addEventListener("DOMContentLoaded", function () { // Cette fonction sera appelée dès que la page est chargée grace au DOMContentLoaded
-    // recupêration de l Id du client via l url grace à l'API URLSearchParams
+    document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
-    //const id = 1;
+    
     if (id) {
         ajax("GET", `/client/${id}`, null, function (data) {
-            // chargement des données  via ID 
             document.getElementById("nom").innerText = data.nom_client;
-            document.getElementById("contact").innerText = "Contact : " + data.telephone;
-            document.getElementById("email").innerText = "Email : " + data.email;
+            document.getElementById("contact").innerText = data.telephone;
+            document.getElementById("email").innerText = data.email;
             document.getElementById("adresse").innerText = data.adresse;
-            document.getElementById("date").innerText = data.date_inscription;
+            document.getElementById("date").innerText = formatDate(data.date_inscription);
         });
     } else {
         console.error("Aucun ID fourni dans l'URL !");
     }
 });
+
+// Fonction optionnelle pour formater la date
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('fr-FR', options);
+}
+</script>
