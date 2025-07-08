@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Profil du client</title>
-</head>
-<body>
     <div>
         <div>[Photo du client]</div>
         <div>
@@ -59,7 +52,3 @@
         console.error("Aucun ID fourni dans l'URL !");
     }
 });
-
-
-</script>
-</html>
