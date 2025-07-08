@@ -125,7 +125,7 @@
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>
-            <a href="profil_?id=${e.client_id}" target="_blank">${e.email}</a>
+            <a href="profil_?id=${e.client_id}" >${e.email}</a>
           </td>
           <td>${e.nom_type_pret}</td>
           <td>${e.montant}</td>

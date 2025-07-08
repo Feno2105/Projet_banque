@@ -37,6 +37,7 @@ class RemboursementController {
             if (Pret::remboursement($id_pret,true)) {
                 $inserted[] = RemboursementModel::create($entry);
             }
+            
             $mois++;
             if ($mois > 12) {
                 $mois = 1;

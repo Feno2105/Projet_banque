@@ -18,20 +18,19 @@
             <div>le <p id="date"></p></div>
         </div>
     </div>
-</body>
   <script>
     const apiBase = "http://localhost/Projet_banque/project/ws";
 
         function ajax(method, url, data, callback) {
           const xhr = new XMLHttpRequest();
           xhr.open(method, apiBase + url, true);
-          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
           xhr.onreadystatechange = () => {
             if (xhr.readyState === 4 && xhr.status === 200) {
               callback(JSON.parse(xhr.responseText));
             }
           };
-          xhr.send(data ? JSON.stringify(data) : null);
+          xhr.send(data ? data : null);
         }
     // fonction pour charger les données du client
     document.addEventListener("DOMContentLoaded", function () { // Cette fonction sera appelée dès que la page est chargée grace au DOMContentLoaded
@@ -52,3 +51,4 @@
         console.error("Aucun ID fourni dans l'URL !");
     }
 });
+</script>
