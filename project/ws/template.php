@@ -7,7 +7,7 @@
     <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/bootstrap/css/all.min.css">
     <link href="./assets/css/style.css" rel="stylesheet">
-    <link rel="" type="" href="./assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/fontawesome/css/all.min.css">
 </head>
 <body class="bank-app">
     <div class="main-container" style="display: flex;">
