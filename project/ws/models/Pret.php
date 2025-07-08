@@ -8,6 +8,12 @@ require_once __DIR__.'/../models/Interet.php';
 
 class Pret
 {
+    public static function getById($id) {
+        $db = getDB();
+        $stmt = $db->prepare("SELECT * FROM view_pret WHERE id_pret = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     public static function getAll()
     {

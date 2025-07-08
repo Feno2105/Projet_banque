@@ -34,3 +34,10 @@ VALUES
   (3, 3, 20000.00, 0.00, '2022-09-10', 2, 400.00),
   (4, 4, 800.00, 800.00, '2025-06-01', 1, 75.00),
   (5, 1, 10000.00, 5000.00, '2024-01-20', 3, 350.00);
+  
+
+INSERT INTO source_fond (nom_source) VALUES ('Budget de l\'État');
+INSERT INTO source_fond (nom_source) VALUES ('Subvention privée');
+INSERT INTO source_fond (nom_source) VALUES ('Partenariat international');
+INSERT INTO source_fond (nom_source) VALUES ('Contribution des parents');
+INSERT INTO source_fond (nom_source) VALUES ('Autofinancement');

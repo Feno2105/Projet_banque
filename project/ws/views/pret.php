@@ -139,6 +139,7 @@
           </td>
           <td>
             <a href="rembourser_?id=${e.id_pret}"><button>Rembourser</button></a>
+            <a href="show_pret_?id_pret=${e.id_pret}"><button>Plus d info</button></a>
           </td>
         `;
         tbody.appendChild(tr);

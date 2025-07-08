@@ -6,6 +6,12 @@ require_once __DIR__ . '/../helpers/Utils.php';
 
 
 class PretController {
+
+    public static function getById($id) {
+        $pret = Pret::getById($id);
+        Flight::json($pret);
+    }
+
     public static function save(){
         $data = Flight::request()->data;
         $id = Pret::save($data);
