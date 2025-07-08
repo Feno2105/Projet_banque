@@ -34,4 +34,13 @@ class ClientController {
         Client::delete($id);
         Flight::json(['message' => 'Client supprimé']);
     }
+    public static function profil() {
+        $id = Flight::request()->query['id'];
+        $client = Client::getById($id);
+        if ($client) {
+            Flight::json($client);
+        } else {
+            Flight::json(['message' => 'Client non trouvé'], 404);
+        }
+    }
 }

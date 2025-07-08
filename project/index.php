@@ -39,7 +39,7 @@
   </table>
 
   <script>
-    const apiBase = "http://localhost:8000";
+    const apiBase = "http://localhost/Projet_banque/project/ws";
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();
@@ -66,7 +66,7 @@
             <td>${f.source}</td>
             <td>${f.description}</td>
             <td>
-              <button onclick='remplirFormulaire(${JSON.stringify(f)})'>✏️</button>
+              <button onclick='remplirFormulaire(${f})'>✏️</button>
               <button onclick='supprimerFonds(${f.id_fonds_etablissement})'>🗑️</button>
             </td>
           `;

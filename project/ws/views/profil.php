@@ -34,23 +34,24 @@
         function ajax(method, url, data, callback) {
           const xhr = new XMLHttpRequest();
           xhr.open(method, apiBase + url, true);
-          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+          xhr.setRequestHeader("Content-Type", "application/json");
           xhr.onreadystatechange = () => {
             if (xhr.readyState === 4 && xhr.status === 200) {
               callback(JSON.parse(xhr.responseText));
             }
           };
-          xhr.send(data);
+          xhr.send(data ? JSON.stringify(data) : null);
         }
     // fonction pour charger les données du client
     document.addEventListener("DOMContentLoaded", function () { // Cette fonction sera appelée dès que la page est chargée grace au DOMContentLoaded
     // recupêration de l Id du client via l url grace à l'API URLSearchParams
-    // const params = new URLSearchParams(window.location.search);
-    // const id = params.get("id");
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    //const id = 1;
     //ici on recupere via flight render l id 
     if (id) {
         // appel de l api depuis Ajax
-        ajax("GET", `/client/${clientId}`, null, function (data) {
+        ajax("GET", `/client/${id}`, null, function (data) {
             // chargement des données  via ID 
             document.getElementById("nom").innerText = data.nom_client;
             document.getElementById("contact").innerText = "Contact : " + data.telephone;
@@ -64,8 +65,5 @@
 });
 
 
-</script>
-<script>
-     const clientId = <?= json_encode($id) ?>;
 </script>
 </html>

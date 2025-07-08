@@ -53,10 +53,6 @@ CREATE TABLE IF NOT EXISTS pret (
     reste_a_payer DECIMAL(15,2),
     date_debut DATE DEFAULT CURRENT_DATE,
     statut INT,
-<<<<<<< HEAD
-=======
-    isValidated BOOLEAN DEFAULT FALSE,
->>>>>>> daff8ec3ac0481c090fdf8ff23168ad9c3622aee
     FOREIGN KEY (client_id) REFERENCES client(id_client),
     FOREIGN KEY (type_pret_id) REFERENCES type_pret(id_type_pret),
     FOREIGN KEY (statut) REFERENCES statut_pret(id_statut_pret)
