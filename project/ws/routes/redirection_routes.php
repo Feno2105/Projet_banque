@@ -9,6 +9,7 @@ Flight::route('GET /typePret_', ['RedirectionController', 'TypePret']);
 Flight::route('GET /rembourser_',['RedirectionController','rembourser']);
 Flight::route('GET /show_pret_', ['RedirectionController', 'show']);
 Flight::route('GET /pret_pdf_', ['RedirectionController', 'pretPdf']);
+Flight::route('GET /simulation_', ['RedirectionController', 'simulation']);
 
 
 // Ajoute d'autres routes si besoin
