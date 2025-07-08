@@ -71,6 +71,8 @@
     <tbody></tbody>
   </table>
 
+    
+
   <script>
     const apiBase = "http://localhost/Projet_banque/project/ws";
     let allLoans = []; // Variable pour stocker tous les prêts
@@ -124,6 +126,7 @@
           <td>
             <button>✏️</button>
             <button>🗑️</button>
+            <a href=""><button>Plus d info</button></a>
           </td>
         `;
         tbody.appendChild(tr);
