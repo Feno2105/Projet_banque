@@ -88,7 +88,7 @@ class Pret
         $date_cible = sprintf('%04d-%02d-01', $annee, $mois);
     
         $stmt = $db->prepare('
-            SELECT * FROM presence 
+            SELECT * FROM pret 
             WHERE id_pret = :id_pret 
             AND date_debut <= :date_cible
             LIMIT 1
