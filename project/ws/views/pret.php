@@ -52,61 +52,6 @@
         </div>
     </div>
 
-<<<<<<< Updated upstream
-  #search-input {
-    width: 300px;
-    padding: 8px;
-  }
-</style>
-</head>
-
-<body>
-
-  <h1>Gestion des prêts</h1>
-  <h2>Faire un pret</h2>
-  <label>Client :</label>
-  <select name="client_id" id="client-choix" required>
-    <!-- Remplir dynamiquement avec les clients existants -->
-    <option value="">Sélectionner un client</option>
-    <!-- <option value="1">Jean Dupont</option> -->
-  </select><br>
-
-  <label>Type de prêt :</label>
-  <select name="type_pret_id" id="type-pret-choix" required>
-    <!-- Remplir dynamiquement avec les types de prêts existants -->
-    <option value="">Sélectionner un type</option>
-    <!-- <option value="1">Crédit Immobilier</option> -->
-  </select><br>
-
-  <label>Montant :</label>
-  <input type="number" step="0.01" name="montant" required><br>
-
-  <label>Date de début :</label>
-  <input type="date" name="date_debut" value="<?= date('Y-m-d') ?>"><br>
-  <br>
-
-  <button onclick="ajouterPret()">Ajouter le prêt</button>
-  <h2>Liste des prêts </h2>
-  <div class="search-container">
-    <input type="text" id="search-input" placeholder="Rechercher par email, type, statut..." oninput="filterLoans()">
-  </div>
-
-  <table id="table-etudiants">
-    <thead>
-      <tr>
-        <th>Email</th>
-        <th>Type</th>
-        <th>Montant</th>
-        <th>Reste a payer</th>
-        <th>Mensualité(resultat de calcul)</th>
-        <th>Date debut</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-=======
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h2 class="mb-0"><i class="fas fa-list me-2"></i>Liste des prêts</h2>
@@ -143,7 +88,6 @@
     </div>
 </div>
 
->>>>>>> Stashed changes
   <script>
     const apiBase = "http://localhost/Projet_banque/project/ws";
     let allLoans = []; // Variable pour stocker tous les prêts
@@ -180,31 +124,32 @@
       loans.forEach(e => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td>
-            <a href="profil_?id=${e.client_id}" target="_blank">${e.email}</a>
-          </td>
-          <td>${e.nom_type_pret}</td>
-          <td>${e.montant}</td>
-          <td>${e.reste_a_payer}</td>
-          <td>${e.mensualite}</td>
-          <td>${e.date_debut}</td>
-          <td>
-            ${e.libelle === 'En attente' 
-              ? ` 
-                <button onclick="valider(${e.id_pret})">Valider</button>
-                <button onclick="refuser(${e.id_pret})">Refuser</button>
-              ` 
-              : e.libelle
-            }
-          </td>
-          <td>
-<<<<<<< Updated upstream
-            <a href="rembourser_?id=${e.id_pret}"><button>Rembourser</button></a>
-=======
->>>>>>> Stashed changes
-            <a href="show_pret_?id_pret=${e.id_pret}"><button>Plus d info</button></a>
-          </td>
-        `;
+  <td>
+    <a href="profil_?id=${e.client_id}" target="_blank">${e.email}</a>
+  </td>
+  <td>${e.nom_type_pret}</td>
+  <td>${e.montant}</td>
+  <td>${e.reste_a_payer}</td>
+  <td>${e.mensualite}</td>
+  <td>${e.date_debut}</td>
+  <td>
+    ${e.libelle === 'En attente' 
+      ? ` 
+        <button class="btn btn-success btn-sm" onclick="valider(${e.id_pret})">Valider</button>
+        <button class="btn btn-danger btn-sm" onclick="refuser(${e.id_pret})">Refuser</button>
+      ` 
+      : e.libelle
+    }
+  </td>
+  <td class="action-buttons">
+    <a href="rembourser_?id=${e.id_pret}" class="btn btn-primary btn-sm btn-rembourser">
+      <i class="fas fa-euro-sign"></i> Rembourser
+    </a>
+    <a href="show_pret_?id_pret=${e.id_pret}" class="btn btn-info btn-sm btn-details">
+      <i class="fas fa-info-circle"></i> Détails
+    </a>
+  </td>
+`;
         tbody.appendChild(tr);
       });
     }

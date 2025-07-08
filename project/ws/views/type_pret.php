@@ -1,25 +1,96 @@
 
-  <h1>Gestion des types de pret</h1>
+<div class="bank-loan-types-container">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fas fa-list-alt icon-lg me-2"></i>
+            Gestion des types de prêt
+        </h1>
+    </div>
 
-  <div>
-    <input type="hidden" id="id_type_pret">
-    <input type="text" id="nom_type_pret" placeholder="Nom du type de pret" />
-    <input type="number" id="taux_interet" placeholder="Taux d'interet (%)" step="0.01" min="0" />
-    <input type="number" id="duree_mois" placeholder="Duree maximum en mois" min="0" />
-    <input type="number" id="montant_min" placeholder="Montant minimum" step="0.01" min="0" />
-    <input type="number" id="montant_max" placeholder="Montant maximum" step="0.01" min="0" />
-    <br/>
-    <button onclick="ajouterOuModifier()">Ajouter / Modifier</button>
-  </div>
+    <div class="card loan-type-form-card mb-4">
+    <div class="card-header">
+        <h2 class="mb-0"><i class="fas fa-plus-circle me-2"></i>Ajouter ou modifier un type</h2>
+    </div>
+    <div class="card-body">
+        <form id="loan-type-form">
+            <input type="hidden" id="id_type_pret">
 
-  <table id="table-type-pret">
-    <thead>
-      <tr>
-        <th>ID</th><th>Nom</th><th>Taux (%)</th><th>Duree mois</th><th>Montant min</th><th>Montant max</th><th>Actions</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+            <div class="row mb-3">
+                <div class="form-group col-md-6">
+                    <label for="nom_type_pret">Nom du type :</label>
+                    <input type="text" class="form-control" id="nom_type_pret" required>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="taux_interet">Taux d'intérêt :</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="taux_interet" step="0.01" min="0" required>
+                        <span class="input-group-text">%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="form-group col-md-6">
+                    <label for="duree_mois">Durée (mois) :</label>
+                    <input type="number" class="form-control" id="duree_mois" min="0" required>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="montant_min">Montant min :</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="montant_min" step="0.01" min="0">
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="form-group col-md-6">
+                    <label for="montant_max">Montant max :</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="montant_max" step="0.01" min="0">
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-start">
+                    <button type="button" class="btn btn-primary" onclick="ajouterOuModifier()">
+                        <i class="fas fa-save"></i> Valider
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+    <div class="card">
+        <div class="card-header">
+            <h2 class="mb-0"><i class="fas fa-list me-2"></i>Liste des types de prêt</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="table-type-pret">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Taux</th>
+                            <th>Durée</th>
+                            <th>Montant min</th>
+                            <th>Montant max</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
   const apiBase = "http://localhost/Projet_banque/project/ws";
@@ -38,26 +109,30 @@
 
   function chargerTypesPret() {
     ajax("GET", "/type_prets", null, (data) => {
-      const tbody = document.querySelector("#table-type-pret tbody");
-      tbody.innerHTML = "";
-      data.forEach(tp => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${tp.id_type_pret}</td>
-          <td>${tp.nom_type_pret}</td>
-          <td>${tp.taux_interet}</td>
-          <td>${tp.duree_mois}</td>
-          <td>${tp.montant_min ?? ''}</td>
-          <td>${tp.montant_max ?? ''}</td>
-          <td>
-            <button onclick='remplirFormulaire(${JSON.stringify(tp)})'>✏️</button>
-            <button onclick='supprimerTypePret(${tp.id_type_pret})'>🗑️</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
+        const tbody = document.querySelector("#table-type-pret tbody");
+        tbody.innerHTML = "";
+        data.forEach(tp => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${tp.id_type_pret}</td>
+                <td><strong>${tp.nom_type_pret}</strong></td>
+                <td class="interest-rate">${tp.taux_interet}%</td>
+                <td>${tp.duree_mois} mois</td>
+                <td>${tp.montant_min ? tp.montant_min + ' €' : '-'}</td>
+                <td>${tp.montant_max ? tp.montant_max + ' €' : '-'}</td>
+                <td class="loan-type-actions">
+                    <button class="btn-edit-loan-type" onclick='remplirFormulaire(${JSON.stringify(tp)})'>
+                        <i class="fas fa-edit"></i> Modifier
+                    </button>
+                    <button class="btn-delete-loan-type" onclick='supprimerTypePret(${tp.id_type_pret})'>
+                        <i class="fas fa-trash-alt"></i> Supprimer
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
     });
-  }
+}
 
   function ajouterOuModifier() {
     const id = document.getElementById("id_type_pret").value;
