@@ -128,7 +128,7 @@
           <td>
             <button>✏️</button>
             <button>🗑️</button>
-            <a href=""><button>Plus d info</button></a>
+            <a href="show_pret.html?id_pret=${e.id_pret}"><button>Plus d info</button></a>
           </td>
         `;
         tbody.appendChild(tr);

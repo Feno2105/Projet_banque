@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Preteur</h2>
+<p>Nom : <span id="nom_preteur"></span></p>
+<p>Prenom : </p>
+<p>Adresse : </p>
+<p>Email : </p>
+<p>Telephone : </p>
+
+<hr>
+
+<h2>Object du pret</h2>
+<p>Le prêteur accorde à l’emprunteur un prêt d’un montant de 5 000 000 Ariary destiné à financer des besoins personnels.</p>
+
+<h2>Durée du prêt</h2>
+<p>La durée du prêt est de 24 mois, à compter du 01 août 2025.</p>
+
+<h2>Taux d’intérêt</h2>
+<p>Le taux d’intérêt annuel fixe est de 8 %.</p>
+
+<h2> Modalités de remboursement</h2>
+<p>L’emprunteur s’engage à rembourser le prêt par mensualités constantes de 226 000 Ariary, comprenant le capital et les intérêts.</p>
+<br>
+<p>Les remboursements commenceront le 01 septembre 2025.</p>
+
+<h2>Assurance</h2>
+
+<h2>Signatures</h2>
+
+<p>Fait à Antananarivo, le 01 août 2025</p>
+<p>Signature du Prêteur : ____________________</p>
+<p>Signature de l’Emprunteur : ____________________</p>
+
+
+ <script>
+    // Récupérer les paramètres de l'URL
+    const params = new URLSearchParams(window.location.search);
+
+    // Obtenir la valeur de id_pret
+    const idPret = params.get("id_pret");
+
+    // Afficher dans la page
+    document.getElementById("affichage").textContent = "ID du prêt : " + idPret;
+
+    // Tu peux aussi l'utiliser dans ton code JS plus loin
+    console.log("ID Prêt récupéré :", idPret);
+  </script>
+
+</body>
+</html>
