@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS statut_pret (
     UNIQUE KEY (libelle)  -- Évite les doublons de libellés
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+
 -- Table 4 : Prêts accordés aux clients
 CREATE TABLE IF NOT EXISTS pret (
     id_pret INT AUTO_INCREMENT PRIMARY KEY,
@@ -89,6 +91,13 @@ CREATE TABLE IF NOT EXISTS fonds_client (
     client_id INT NOT NULL,
     solde DECIMAL(15,2) NOT NULL,
     FOREIGN KEY (client_id) REFERENCES client(id_client)
+);
+CREATE TABLE remboursement (
+    id_remboursement INT AUTO_INCREMENT PRIMARY KEY,
+    id_pret INT,
+    mois INT NOT NULL CHECK (mois BETWEEN 1 AND 12),
+    annee INT NOT NULL,
+    FOREIGN KEY (id_pret) REFERENCES pret(id_pret)
 );
 
 CREATE TABLE interet(
