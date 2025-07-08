@@ -25,6 +25,10 @@
                 <i class="fas fa-percentage"></i>
                 <span>Intérêts</span>
             </a>
+            <a href="simulation_" class="nav-link">
+                <i class="fas fa-percentage"></i>
+                <span>Proceder a une simulation</span>
+            </a>
         </div>
         <div class="nav-footer">
             <a href="#" class="logout-btn">
