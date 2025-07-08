@@ -28,4 +28,9 @@ class RedirectionController {
         $content = __DIR__ . '/../views/fond_etablissement.php';
         include __DIR__ . '/../template.php';
     }
+    public static function rembourser() {
+        $title = "Fonds d'Établissement";
+        $content = __DIR__ . '/../views/rembourser.php';
+        include __DIR__ . '/../template.php';
+    }
 }

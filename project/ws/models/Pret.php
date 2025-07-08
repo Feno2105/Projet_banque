@@ -64,4 +64,31 @@ class Pret
             return false;
         }
     }
+    public static function remboursement($id)
+    {
+        $db = getDB();
+        $stmt = $db->prepare('SELECT reste_a_payer, mensualite FROM pret WHERE id_pret = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $pret = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if (!$pret) {
+            return ['success' => false, 'message' => 'Prêt non trouvé'];
+        }
+        if ($pret['reste_a_payer']==0) {
+            return ['success' => false, 'message' => 'Mensualité trop élevée, remboursement impossible'];    
+        }
+        if ($pret['reste_a_payer'] < $pret['mensualite']) {
+            $stmt = $db->prepare('UPDATE pret SET reste_a_payer = 0 WHERE id_pret = :id');            
+        }
+        else{
+            $stmt = $db->prepare('UPDATE pret SET reste_a_payer = (reste_a_payer-mensualite) WHERE id_pret = :id');
+        }
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);    
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

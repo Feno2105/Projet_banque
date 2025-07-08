@@ -84,7 +84,6 @@
     </thead>
     <tbody></tbody>
   </table>
-
   <script>
     const apiBase = "http://localhost/Projet_banque/project/ws";
     let allLoans = []; // Variable pour stocker tous les prêts
@@ -139,8 +138,7 @@
             }
           </td>
           <td>
-            <button>✏️</button>
-            <button>🗑️</button>
+            <a href="rembourser_?id=${e.id_pret}"><button>Rembourser</button></a>
           </td>
         `;
         tbody.appendChild(tr);
@@ -162,7 +160,13 @@
         alert("Erreur lors du chargement des clients");
       });
     }
-
+    function rembourser(id){
+      if (confirm('Rembourser ?')) {
+        ajax("GET" ,`/prets/rembourser/${id}`,null,()=>{
+          chargerPrets();
+        });
+      }
+    }
     function chargerTypePrets() {
       ajax("GET", "/type_prets", null, (data) => {
         const select = document.getElementById("type-pret-choix");
