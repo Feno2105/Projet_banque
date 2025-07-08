@@ -50,8 +50,8 @@ class Interet
        $interet = $stmt->fetch(PDO::FETCH_ASSOC);
        $stmt2 = $db->prepare('INSERT INTO interet_par_mois(id_pret, mois, annee, valeur) VALUES (:id_pret, :mois, :annee, :valeur)');
        $stmt2->bindParam(':id_pret', $id, PDO::PARAM_INT);
-       $stmt2->bindParam(':mois', $mois, PDO::PARAM_INT);
-       $stmt2->bindParam(':annee', $annee, PDO::PARAM_INT);
+       $stmt2->bindParam(':mois', $data->mois, PDO::PARAM_INT);
+       $stmt2->bindParam(':annee', $data->annee, PDO::PARAM_INT);
        $stmt2->bindParam(':valeur', $interet['interet_total'], PDO::PARAM_STR);
        $stmt2->execute();
        return $db->lastInsertId();
@@ -63,4 +63,12 @@ class Interet
         $stmt->execute([$data->id_pret,$data->mois, $data->annee]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public static function listInteretParIntervalle($mois_debut, $annee_debut, $mois_fin, $annee_fin)
+    {
+        $db = getDB();
+        $stmt = $db->prepare("select mois,annee,SUM(valeur) AS total from  interet_par_mois WHERE  mois >= :mois_debut AND mois <= :mois_fin AND annee >= :annee_debut AND annee <= :annee_fin GROUP BY mois,annee");
+        $stmt->execute(['mois_debut' => $mois_debut, 'mois_fin' => $mois_fin, 'annee_debut' => $annee_debut, 'annee_fin' => $annee_fin]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+}

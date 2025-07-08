@@ -36,7 +36,7 @@ class RemboursementController {
                 'annee' => $annee,
             ];
             if (Pret::remboursement($id_pret,true)) {
-                $inserted[] = RemboursementModel::create($entry);
+                RemboursementModel::create($entry);
             }
             if(!Interet::getByIdParMois($entry)){
                 $inserted[] = Interet::saveInteretParRemboursement($id_pret,$entry);
