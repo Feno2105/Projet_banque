@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS pret (
     montant DECIMAL(15,2),
     reste_a_payer DECIMAL(15,2),
     date_debut DATE DEFAULT CURRENT_DATE,
+    mensualite DECIMAL(15,2),  -- Ajout de la mensualité
     statut INT,
-    isValidated BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (client_id) REFERENCES client(id_client),
     FOREIGN KEY (type_pret_id) REFERENCES type_pret(id_type_pret),
     FOREIGN KEY (statut) REFERENCES statut_pret(id_statut_pret)
@@ -102,3 +102,4 @@ CREATE VIEW view_pret AS
             statut_pret s ON s.id_statut_pret = p.statut
         JOIN type_pret tp ON tp.id_type_pret = p.type_pret_id;
 
+SELECT * FROM view_pret;

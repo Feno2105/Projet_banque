@@ -21,14 +21,13 @@ INSERT INTO statut_pret (libelle) VALUES
   ('En retard');  -- id = 3
 
 
-INSERT INTO pret (client_id, type_pret_id, montant, reste_a_payer, date_debut, statut)
+INSERT INTO pret (client_id, type_pret_id, montant, reste_a_payer, date_debut, statut, mensualite)
 VALUES
-  (1, 1, 5000.00, 3200.00, '2025-04-01', 1),
-  (2, 2, 150000.00, 140000.00, '2023-06-15', 1),
-  (3, 3, 20000.00, 0.00, '2022-09-10', 2),
-  (4, 4, 800.00, 800.00, '2025-06-01', 1),
-  (5, 1, 10000.00, 5000.00, '2024-01-20', 3);
-
+  (1, 1, 5000.00, 3200.00, '2025-04-01', 1, 220.00),
+  (2, 2, 150000.00, 140000.00, '2023-06-15', 1, 1200.00),
+  (3, 3, 20000.00, 0.00, '2022-09-10', 2, 400.00),
+  (4, 4, 800.00, 800.00, '2025-06-01', 1, 75.00),
+  (5, 1, 10000.00, 5000.00, '2024-01-20', 3, 350.00);
 INSERT INTO source_fond (nom_source) VALUES ('Budget de l\'État');
 INSERT INTO source_fond (nom_source) VALUES ('Subvention privée');
 INSERT INTO source_fond (nom_source) VALUES ('Partenariat international');
