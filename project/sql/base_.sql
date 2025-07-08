@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS fonds_etablissement (
     FOREIGN KEY (source) REFERENCES source_fond(id_source_fond)
 );
 
+
 -- Table 2 : Types de prêt avec taux et durée
 CREATE TABLE IF NOT EXISTS type_pret (
     id_type_pret INT AUTO_INCREMENT PRIMARY KEY,
@@ -115,6 +116,14 @@ CREATE TABLE interet(
     valeur DECIMAL(15,2),
     FOREIGN KEY (id_pret) REFERENCES pret(id_pret)
 );
+CREATE TABLE interet_par_mois(
+    id_interet_par_mois INT AUTO_INCREMENT PRIMARY KEY,
+    id_pret INT,
+    mois INT NOT NULL CHECK (mois BETWEEN 1 AND 12),
+    annee INT,
+    valeur DECIMAL(15,2),
+    FOREIGN KEY (id_pret) REFERENCES pret(id_pret)
+);
 -- PRET FULL INFO
 
 -- VIEWS
@@ -127,3 +136,9 @@ CREATE VIEW view_pret AS
         JOIN type_pret tp ON tp.id_type_pret = p.type_pret_id;
 
 SELECT * FROM view_pret;
+CREATE OR REPLACE VIEW vue_interet_global AS
+SELECT 
+    p.id_pret,
+    i.valeur AS interet_total
+FROM pret p
+JOIN interet i ON i.id_pret = p.id_pret;
