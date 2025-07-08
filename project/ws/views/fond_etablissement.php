@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Gestion des fonds</title>
-  <style>
-    body { font-family: sans-serif; padding: 20px; }
-    input, select, button { margin: 5px; padding: 5px; }
-    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f2f2f2; }
-  </style>
-</head>
-<body>
-
   <h1>Gestion des fonds de l'établissement</h1>
   <a href=""></a>
   <div>
@@ -36,7 +21,7 @@
   </table>
 
   <script>
-    const apiBase = "http://localhost:8000";
+    const apiBase = "http://localhost/Projet_banque/project/ws";
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();
@@ -47,7 +32,7 @@
           callback(JSON.parse(xhr.responseText));
         }
       };
-      xhr.send(data);
+      xhr.send(data ? data: null);
     }
 
     function chargerFonds() {
@@ -147,6 +132,3 @@
     chargerSources();
     chargerFonds();
   </script>
-
-</body>
-</html>

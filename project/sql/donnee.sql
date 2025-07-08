@@ -35,3 +35,5 @@ VALUES
   (4, 4, 800.00, 800.00, '2025-06-01', 1),
   (5, 1, 10000.00, 5000.00, '2024-01-20', 3);
 
+INSERT INTO client (nom_client, email, telephone, adresse, date_inscription)
+VALUES ('Jean Dupont', 'jean.dupont@email.com', '0612345678', '12 rue de Paris, 75001 Paris', '2025-11-01');

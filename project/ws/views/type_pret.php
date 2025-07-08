@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <title>Gestion des types de pret</title>
-  <style>
-    body { font-family: sans-serif; padding: 20px; }
-    input, button { margin: 5px; padding: 5px; width: 200px; }
-    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f2f2f2; }
-  </style>
-</head>
-<body>
 
   <h1>Gestion des types de pret</h1>
 
@@ -19,7 +5,7 @@
     <input type="hidden" id="id_type_pret">
     <input type="text" id="nom_type_pret" placeholder="Nom du type de pret" />
     <input type="number" id="taux_interet" placeholder="Taux d'interet (%)" step="0.01" min="0" />
-    <input type="number" id="duree_mois" placeholder="Duree en mois" min="0" />
+    <input type="number" id="duree_mois" placeholder="Duree maximum en mois" min="0" />
     <input type="number" id="montant_min" placeholder="Montant minimum" step="0.01" min="0" />
     <input type="number" id="montant_max" placeholder="Montant maximum" step="0.01" min="0" />
     <br/>
@@ -47,7 +33,7 @@
         callback(JSON.parse(xhr.responseText));
       }
     };
-    xhr.send(data);
+    xhr.send(data ? data : null);
   }
 
   function chargerTypesPret() {
@@ -124,6 +110,3 @@
 
   chargerTypesPret();
 </script>
-
-</body>
-</html>
