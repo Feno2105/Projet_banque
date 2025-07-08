@@ -10,6 +10,6 @@ Flight::route('GET /rembourser_',['RedirectionController','rembourser']);
 Flight::route('GET /show_pret_', ['RedirectionController', 'show']);
 Flight::route('GET /pret_pdf_', ['RedirectionController', 'pretPdf']);
 Flight::route('GET /simulation_', ['RedirectionController', 'simulation']);
-
+Flight::route('GET /fondtab_', ['RedirectionController', 'fondtab']);
 
 // Ajoute d'autres routes si besoin

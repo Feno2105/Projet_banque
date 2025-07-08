@@ -144,3 +144,18 @@ SELECT
     i.valeur AS interet_total
 FROM pret p
 JOIN interet i ON i.id_pret = p.id_pret;
+
+--view 2 --
+CREATE OR REPLACE VIEW view_fond_restant AS
+SELECT 
+    c.id_client AS id_utilisateur,
+    COALESCE(SUM(fe.montant), 0) AS mef,
+    COALESCE(SUM(p.montant), 0) AS mp,   
+    COALESCE(SUM(p.montant - p.reste_a_payer), 0) AS p, 
+    COALESCE(SUM(fe.montant), 0) - COALESCE(SUM(p.montant), 0) + COALESCE(SUM(p.montant - p.reste_a_payer), 0) AS solde
+FROM 
+    client c
+LEFT JOIN pret p ON p.client_id = c.id_client
+LEFT JOIN fonds_etablissement fe ON fe.source = c.id_client 
+GROUP BY 
+    c.id_client;
