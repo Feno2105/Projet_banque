@@ -36,7 +36,7 @@
   </table>
 
   <script>
-    const apiBase = "http://localhost:8000";
+    const apiBase = "http://localhost/Projet_banque/project/ws";
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();
@@ -47,7 +47,7 @@
           callback(JSON.parse(xhr.responseText));
         }
       };
-      xhr.send(data);
+      xhr.send(data ? data: null);
     }
 
     function chargerFonds() {

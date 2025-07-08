@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS fonds_etablissement (
     montant DECIMAL(15,2) NOT NULL,
     source INT NOT NULL,
     description VARCHAR(255),
-    FOREIGN KEY (source) REFERENCES source_fond(id_source_fond)
+    FOREIGN KEY (source) REFERENCES source_fond(id)
 );
 
 -- Table 2 : Types de prêt avec taux et durée
@@ -37,12 +37,10 @@ CREATE TABLE IF NOT EXISTS client (
     date_inscription DATE DEFAULT CURRENT_DATE
 );
 
--- Création de la table statut_pret
 CREATE TABLE IF NOT EXISTS statut_pret (
     id_statut_pret INT AUTO_INCREMENT PRIMARY KEY,
-    libelle VARCHAR(100) NOT NULL,
-    UNIQUE KEY (libelle)  -- Évite les doublons de libellés
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    libelle VARCHAR(100) NOT NULL
+);
 
 -- Table 4 : Prêts accordés aux clients
 CREATE TABLE IF NOT EXISTS pret (
@@ -52,7 +50,6 @@ CREATE TABLE IF NOT EXISTS pret (
     montant DECIMAL(15,2),
     reste_a_payer DECIMAL(15,2),
     date_debut DATE DEFAULT CURRENT_DATE,
-    mensualite DECIMAL(15,2),  -- Ajout de la mensualité
     statut INT,
     FOREIGN KEY (client_id) REFERENCES client(id_client),
     FOREIGN KEY (type_pret_id) REFERENCES type_pret(id_type_pret),
@@ -78,9 +75,9 @@ CREATE TABLE IF NOT EXISTS mouvement (
     reste_apres_paiement DECIMAL(15,2),
     mode_paiement VARCHAR(50),
     type_mouvement_id INT,
-    FOREIGN KEY (type_mouvement_id) REFERENCES type_mouvement(id_type_mouvement),
-    FOREIGN KEY (pret_id) REFERENCES pret(id_pret),
-    FOREIGN KEY (client_id) REFERENCES client(id_client)
+    FOREIGN KEY (type_mouvement_id) REFERENCES type_mouvement(id),
+    FOREIGN KEY (pret_id) REFERENCES pret(id),
+    FOREIGN KEY (client_id) REFERENCES client(id)
 );
 
 -- Table 6 : Fonds client (argent réellement sorti pour financement)
@@ -88,7 +85,7 @@ CREATE TABLE IF NOT EXISTS fonds_client (
     id_fonds_client INT AUTO_INCREMENT PRIMARY KEY,
     client_id INT NOT NULL,
     solde DECIMAL(15,2) NOT NULL,
-    FOREIGN KEY (client_id) REFERENCES client(id_client)
+    FOREIGN KEY (client_id) REFERENCES client(id)
 );
 
 -- PRET FULL INFO
@@ -102,4 +99,3 @@ CREATE VIEW view_pret AS
             statut_pret s ON s.id_statut_pret = p.statut
         JOIN type_pret tp ON tp.id_type_pret = p.type_pret_id;
 
-SELECT * FROM view_pret;

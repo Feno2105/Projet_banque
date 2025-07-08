@@ -19,7 +19,7 @@
     <input type="hidden" id="id_type_pret">
     <input type="text" id="nom_type_pret" placeholder="Nom du type de pret" />
     <input type="number" id="taux_interet" placeholder="Taux d'interet (%)" step="0.01" min="0" />
-    <input type="number" id="duree_mois" placeholder="Duree en mois" min="0" />
+    <input type="number" id="duree_mois" placeholder="Duree maximum en mois" min="0" />
     <input type="number" id="montant_min" placeholder="Montant minimum" step="0.01" min="0" />
     <input type="number" id="montant_max" placeholder="Montant maximum" step="0.01" min="0" />
     <br/>
@@ -36,7 +36,7 @@
   </table>
 
 <script>
-  const apiBase = "http://localhost:8000";
+  const apiBase = "http://localhost/Projet_banque/project/ws";
 
   function ajax(method, url, data, callback) {
     const xhr = new XMLHttpRequest();
@@ -47,7 +47,7 @@
         callback(JSON.parse(xhr.responseText));
       }
     };
-    xhr.send(data);
+    xhr.send(data ? data : null);
   }
 
   function chargerTypesPret() {

@@ -5,7 +5,6 @@
     <title>Profil du client</title>
 </head>
 <body>
-    <!-- En-tête -->
     <div>
         <div>[Photo du client]</div>
         <div>
@@ -15,7 +14,6 @@
         </div>
     </div>
     <br>
-    <!-- Informations principales -->
     <div>
         <div>
             <h2>Adresse</h2>
@@ -48,9 +46,7 @@
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
     //const id = 1;
-    //ici on recupere via flight render l id 
     if (id) {
-        // appel de l api depuis Ajax
         ajax("GET", `/client/${id}`, null, function (data) {
             // chargement des données  via ID 
             document.getElementById("nom").innerText = data.nom_client;
