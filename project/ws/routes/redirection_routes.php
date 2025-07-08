@@ -12,5 +12,6 @@ Flight::route('GET /pret_pdf_', ['RedirectionController', 'pretPdf']);
 Flight::route('GET /simulation_', ['RedirectionController', 'simulation']);
 Flight::route('GET /interet_', ['RedirectionController', 'interet']);
 
+Flight::route('GET /fondtab_', ['RedirectionController', 'fondtab']);
 
 // Ajoute d'autres routes si besoin

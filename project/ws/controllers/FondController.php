@@ -33,4 +33,9 @@ class FondController {
         FondModel::delete($id);
         Flight::json(['message' => 'Fonds supprimé']);
     }
+    public static function getFonds(){
+        $data = Flight::request()->data;
+        $result = FondModel::viewMontant($data->mois,$data->annee);
+        Flight::json($result);
+    }
 }

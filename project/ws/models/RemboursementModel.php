@@ -49,4 +49,21 @@ class RemboursementModel {
         $stmt = $db->prepare("DELETE FROM remboursement WHERE id_remboursement = ?");
         $stmt->execute([$id]);
     }
+    public static function verifyDate($id_pret, $mois, $annee) {
+        $db = getDB();
+    
+        $stmt = $db->prepare('
+            SELECT 1 FROM remboursement 
+            WHERE id_pret = :id_pret AND mois = :mois AND annee = :annee 
+            LIMIT 1
+        ');
+        $stmt->execute([
+            ':id_pret' => $id_pret,
+            ':mois' => $mois,
+            ':annee' => $annee
+        ]);
+    
+        return $stmt->fetch() === false;
+    }
+    
 }
