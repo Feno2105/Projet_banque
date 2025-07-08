@@ -41,6 +41,9 @@
 
         <label for="annee_fin">Année de fin :</label>
         <input type="number" name="annee_fin" id="annee_fin" placeholder="ex : 2025" min="1900" max="2100" required>
+        
+        <!-- <label for="assurance">Avec assurance</label>
+        <input type="checkbox" name="assurance" id="assurance"> -->
     </fieldset>
 
     <button type="submit">Valider</button>

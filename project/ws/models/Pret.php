@@ -20,10 +20,11 @@ class Pret
         $db = getDB();
         $TypePret = TypePretModel::getById($data->type_pret_id);
         $mesualite = $data->montant / $TypePret['duree_mois'];
-        $mensualite = $mesualite + ($mesualite * ($TypePret['taux_interet'] / 1200));
+        $mensualite = $mesualite + ($mesualite * ($TypePret['taux_interet'] / 1200))+($mesualite * ($TypePret['valeur_assurance'] / 1200));
+        $montant_avec_pret = $mensualite*$TypePret['duree_mois'];
         $statut = 1;
         $stmt = $db->prepare("INSERT INTO pret (client_id, type_pret_id,mensualite,montant, reste_a_payer,date_debut,statut) VALUES (?, ?, ?, ?,?,?,?)");
-        $stmt->execute([$data->client_id, $data->type_pret_id, $mensualite, $data->montant, $data->montant, $data->date_debut,$statut]);
+        $stmt->execute([$data->client_id, $data->type_pret_id, $mensualite, $data->montant, $montant_avec_pret, $data->date_debut,$statut]);
         $id_pret = $db->lastInsertId();
         $interet = Interet::save($id_pret, $data);
         return $id_pret;
@@ -67,25 +68,34 @@ class Pret
             return false;
         }
     }
-    public static function remboursement($id)
+    public static function remboursement($id,$assurance)
     {
         $db = getDB();
-        $stmt = $db->prepare('SELECT reste_a_payer, mensualite FROM pret WHERE id_pret = :id');
+
+        $stmt = $db->prepare('SELECT p.reste_a_payer, p.montant,p.mensualite, tp.valeur_assurance, tp.duree_mois,tp.nom_type_pret, tp.taux_interet FROM pret p JOIN type_pret tp ON p.type_pret_id = tp.id_type_pret WHERE p.id_pret = :id');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $pret = $stmt->fetch(PDO::FETCH_ASSOC);
-    
         if (!$pret) {
             return ['success' => false, 'message' => 'Prêt non trouvé'];
         }
         if ($pret['reste_a_payer']==0) {
             return ['success' => false, 'message' => 'Mensualité trop élevée, remboursement impossible'];    
         }
-        if ($pret['reste_a_payer'] < $pret['mensualite']) {
-            $stmt = $db->prepare('UPDATE pret SET reste_a_payer = 0 WHERE id_pret = :id');            
+        if ($assurance) {        
+            if ($pret['reste_a_payer']-$pret['mensualite']<0) {
+                $stmt = $db->prepare('UPDATE pret SET reste_a_payer = 0 WHERE id_pret = :id');
+            }else{
+                $stmt = $db->prepare('UPDATE pret SET reste_a_payer = (reste_a_payer - mensualite) WHERE id_pret = :id');
+            }
         }
         else{
-            $stmt = $db->prepare('UPDATE pret SET reste_a_payer = (reste_a_payer-mensualite) WHERE id_pret = :id');
+            if ($pret['reste_a_payer'] < $pret['mensualite']) {
+                $stmt = $db->prepare('UPDATE pret SET reste_a_payer = 0 WHERE id_pret = :id');            
+            }
+            else{
+                $stmt = $db->prepare('UPDATE pret SET reste_a_payer = (reste_a_payer-mensualite) WHERE id_pret = :id');
+            }
         }
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);    
         if ($stmt->execute()) {
