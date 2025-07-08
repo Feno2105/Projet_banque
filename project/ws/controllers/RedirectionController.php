@@ -56,4 +56,9 @@ class RedirectionController {
         $content = __DIR__ . '/../views/rembourser.php';
         include __DIR__ . '/../template.php';
     }
+    public static function fondtab() {
+        $title = "Fonds d'Établissement";
+        $content = __DIR__ . '/../views/fondtab.php';
+        include __DIR__ . '/../template.php';
+    }
 }
