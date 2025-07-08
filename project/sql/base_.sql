@@ -20,12 +20,17 @@ CREATE TABLE IF NOT EXISTS fonds_etablissement (
 -- Table 2 : Types de prêt avec taux et durée
 CREATE TABLE IF NOT EXISTS type_pret (
     id_type_pret INT AUTO_INCREMENT PRIMARY KEY,
+    valeur_assurance DECIMAL(5,2) NOT NULL,
     nom_type_pret VARCHAR(100) NOT NULL,
     taux_interet DECIMAL(5,2) NOT NULL,
     duree_mois INT NOT NULL,
     montant_min DECIMAL(15,2),
     montant_max DECIMAL(15,2)
 );
+-- ALTER TABLE type_pret
+-- ADD COLUMN valeur_assurance DECIMAL(5,2) NOT NULL DEFAULT 0;
+-- UPDATE type_pret
+-- SET valeur_assurance = 1;
 
 -- Table 3 : Clients
 CREATE TABLE IF NOT EXISTS client (

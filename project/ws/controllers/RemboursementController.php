@@ -24,6 +24,7 @@ class RemboursementController {
         $annee = (int)$data->annee_debut;
         $mois_fin = (int)$data->mois_fin;
         $annee_fin = (int)$data->annee_fin;
+        // $assurance = isset($data->assurance) ? 1 : 0;
     
         $inserted = [];
 
@@ -31,9 +32,9 @@ class RemboursementController {
             $entry = (object)[
                 'id_pret' => $id_pret,
                 'mois' => $mois,
-                'annee' => $annee
+                'annee' => $annee,
             ];
-            if (Pret::remboursement($id_pret)) {
+            if (Pret::remboursement($id_pret,true)) {
                 $inserted[] = RemboursementModel::create($entry);
             }
             $mois++;
