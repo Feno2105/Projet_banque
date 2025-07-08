@@ -1,6 +1,3 @@
--- Base de données : tp_flight
-CREATE DATABASE IF NOT EXISTS tp_flight;
-USE tp_flight;
 
 CREATE TABLE IF NOT EXISTS source_fond (
     id_source_fond INT AUTO_INCREMENT PRIMARY KEY,
@@ -137,6 +134,8 @@ CREATE VIEW view_pret AS
 
 
 SELECT * FROM view_pret;
+
+
 CREATE OR REPLACE VIEW vue_interet_global AS
 SELECT 
     p.id_pret,

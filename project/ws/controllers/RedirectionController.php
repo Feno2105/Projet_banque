@@ -1,6 +1,11 @@
 <?php
 class RedirectionController {
-    
+    public static function interet() {
+        $title = "Liste des intérêts";
+        $content = __DIR__ . '/../views/interet.php';
+        include __DIR__ . '/../template.php';
+    }
+
     public static function pretPdf() {
         $title = "Show pret pdf";
         $content = __DIR__ . '/../views/pretPdf.php';

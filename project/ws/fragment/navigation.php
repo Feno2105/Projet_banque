@@ -21,7 +21,7 @@
                 <i class="fas fa-list-alt"></i>
                 <span>Types de Prêts</span>
             </a>
-            <a href="interets_" class="nav-link">
+            <a href="interet_" class="nav-link">
                 <i class="fas fa-percentage"></i>
                 <span>Intérêts</span>
             </a>
