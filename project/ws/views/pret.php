@@ -124,28 +124,32 @@
       loans.forEach(e => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td>
-            <a href="profil_?id=${e.client_id}" >${e.email}</a>
-          </td>
-          <td>${e.nom_type_pret}</td>
-          <td>${e.montant}</td>
-          <td>${e.reste_a_payer}</td>
-          <td>${e.mensualite}</td>
-          <td>${e.date_debut}</td>
-          <td>
-            ${e.libelle === 'En attente' 
-              ? ` 
-                <button onclick="valider(${e.id_pret})">Valider</button>
-                <button onclick="refuser(${e.id_pret})">Refuser</button>
-              ` 
-              : e.libelle
-            }
-          </td>
-          <td>
-            <a href="rembourser_?id=${e.id_pret}"><button>Rembourser</button></a>
-            <a href="show_pret_?id_pret=${e.id_pret}"><button>Plus d info</button></a>
-          </td>
-        `;
+  <td>
+    <a href="profil_?id=${e.client_id}" target="_blank">${e.email}</a>
+  </td>
+  <td>${e.nom_type_pret}</td>
+  <td>${e.montant}</td>
+  <td>${e.reste_a_payer}</td>
+  <td>${e.mensualite}</td>
+  <td>${e.date_debut}</td>
+  <td>
+    ${e.libelle === 'En attente' 
+      ? ` 
+        <button class="btn btn-success btn-sm" onclick="valider(${e.id_pret})">Valider</button>
+        <button class="btn btn-danger btn-sm" onclick="refuser(${e.id_pret})">Refuser</button>
+      ` 
+      : e.libelle
+    }
+  </td>
+  <td class="action-buttons">
+    <a href="rembourser_?id=${e.id_pret}" class="btn btn-primary btn-sm btn-rembourser">
+      <i class="fas fa-euro-sign"></i> Rembourser
+    </a>
+    <a href="show_pret_?id_pret=${e.id_pret}" class="btn btn-info btn-sm btn-details">
+      <i class="fas fa-info-circle"></i> Détails
+    </a>
+  </td>
+`;
         tbody.appendChild(tr);
       });
     }

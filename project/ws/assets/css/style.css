@@ -562,3 +562,621 @@
       margin-top: 10px;
   }
 }
+
+
+/* ====================== */
+/* STYLES POUR LA PAGE DE DETAILS DE PRET */
+/* ====================== */
+
+.bank-document-container {
+  padding: 2rem;
+}
+
+.document-card {
+  border-top: 3px solid var(--accent-color);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+.document-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.loan-details {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+.loan-section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.section-divider {
+  border: 0;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+}
+
+.loan-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.info-item {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.info-label {
+  font-weight: 600;
+  color: var(--primary-color);
+  min-width: 100px;
+}
+
+.info-value {
+  color: var(--dark-color);
+}
+
+.loan-text {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--light-color);
+}
+
+.signature-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.signature-item {
+  width: 45%;
+  text-align: center;
+}
+
+.signature-line {
+  height: 1px;
+  background-color: #000;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.signature-line:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  position: absolute;
+  top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .loan-info-grid {
+      grid-template-columns: 1fr;
+  }
+  
+  .signature-container {
+      flex-direction: column;
+  }
+  
+  .signature-item {
+      width: 100%;
+      margin-bottom: 2rem;
+  }
+}
+
+
+/* ====================== */
+/* PAGE D'ACCUEIL BANCAIRE */
+/* ====================== */
+
+.bank-homepage {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.bank-hero {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Features Grid */
+.bank-features {
+  padding: 5rem 2rem;
+  background-color: var(--light-color);
+}
+
+.section-title {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.section-title:after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--accent-color);
+  margin: 1rem auto;
+}
+
+.section-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  font-size: 1.1rem;
+  color: var(--text-light);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card.highlight {
+  border-top: 4px solid var(--accent-color);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.feature-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.feature-link {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+/* About Section */
+.bank-about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+  background: white;
+}
+
+.about-content {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.commitment-list {
+  margin: 2rem 0;
+  list-style: none;
+  padding: 0;
+}
+
+.commitment-list li {
+  margin-bottom: 1rem;
+  padding-left: 2.5rem;
+  position: relative;
+}
+
+.commitment-list i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent-color);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.about-image {
+  background: var(--light-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Testimonials */
+.bank-testimonials {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+}
+
+.testimonials-slider {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 3rem auto 0;
+}
+
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.testimonial-content {
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.testimonial-content:before,
+.testimonial-content:after {
+  content: '"';
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.testimonial-author {
+  font-weight: 600;
+}
+
+.author-title {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* CTA Section */
+.bank-cta {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: var(--dark-color);
+  color: white;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bank-about {
+      grid-template-columns: 1fr;
+  }
+  
+  .about-content {
+      padding: 2rem;
+  }
+  
+  .hero-title {
+      font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+      font-size: 1.2rem;
+  }
+}
+
+
+/* Styles pour les boutons d'action */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-rembourser {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-rembourser:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-details {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-details:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Boutons Valider/Refuser */
+.btn-success {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+/* ====================== */
+/* GESTION DES FONDS */
+/* ====================== */
+
+.bank-funds-container {
+  padding: 2rem;
+}
+
+.fund-form-card {
+  border-top: 3px solid var(--accent-color);
+}
+
+.fund-form-card .card-header {
+  background-color: rgba(0, 95, 135, 0.05);
+  color: var(--primary-color);
+}
+
+/* Tableau des fonds */
+#table-fonds th {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+#table-fonds td {
+  vertical-align: middle;
+}
+
+/* Boutons d'action */
+.fund-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-edit {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+  background-color: #0069d9;
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+/* Montant positif/négatif */
+.positive-amount {
+  color: var(--success-color);
+  font-weight: 600;
+}
+
+.negative-amount {
+  color: var(--danger-color);
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-row {
+      flex-direction: column;
+  }
+  
+  .form-group {
+      width: 100%;
+      margin-bottom: 1rem;
+  }
+  
+  .fund-actions {
+      flex-direction: column;
+      gap: 5px;
+  }
+}
+
+
+/* ====================== */
+/* GESTION DES TYPES DE PRÊT */
+/* ====================== */
+
+.bank-loan-types-container {
+  padding: 2rem;
+}
+
+.loan-type-form-card {
+  border-top: 3px solid var(--accent-color);
+}
+
+.loan-type-form-card .card-header {
+  background-color: rgba(0, 95, 135, 0.05);
+  color: var(--primary-color);
+}
+
+/* Tableau des types de prêt */
+#table-type-pret th {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+#table-type-pret td {
+  vertical-align: middle;
+}
+
+/* Style des taux */
+.interest-rate {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Boutons d'action */
+.loan-type-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-edit-loan-type {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-edit-loan-type:hover {
+  background-color: #0069d9;
+  transform: translateY(-1px);
+}
+
+.btn-delete-loan-type {
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-delete-loan-type:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .form-row {
+      flex-direction: column;
+  }
+  
+  .form-group {
+      width: 100%;
+      margin-bottom: 1rem;
+  }
+  
+  .loan-type-actions {
+      flex-direction: column;
+      gap: 5px;
+  }
+}
