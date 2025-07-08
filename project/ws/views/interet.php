@@ -80,7 +80,7 @@
         if (xhr.readyState === 4 && xhr.status === 200) {
           callback(JSON.parse(xhr.responseText));
         } else if (xhr.readyState === 4) {
-          document.getElementById('error_message').textContent = 'Erreur lors de la requête';
+          document.getElementById('error_message').textContent = 'Acun interet trouver';
         }
       };
       xhr.send(data);
