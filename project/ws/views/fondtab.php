@@ -8,7 +8,7 @@
 <body class="p-4">
 
   <div class="container">
-    <h1 class="mb-4">Situation mensuelle des fonds par client</h1>
+    <h1 class="mb-4">Situation mensuelle des fonds de l'EF</h1>
 
     <form id="form-filtre" class="row g-3 mb-4">
       <div class="col-md-3">
