@@ -30,16 +30,21 @@ class RemboursementController {
         $inserted = [];
 
         while ($annee < $annee_fin || ($annee == $annee_fin && $mois <= $mois_fin)) {
-            $entry = (object)[
-                'id_pret' => $id_pret,
-                'mois' => $mois,
-                'annee' => $annee,
-            ];
-            if (Pret::remboursement($id_pret,true)) {
-                $inserted[] = RemboursementModel::create($entry);
-            }
-            if(!Interet::getByIdParMois($entry)){
-                $inserted[] = Interet::saveInteretParRemboursement($id_pret,$entry);
+            if (Pret::verifyPresenece($id_pret, $mois, $annee) && RemboursementModel::verifyDate($id_pret, $mois, $annee)){
+                $entry = (object)[
+                    'id_pret' => $id_pret,
+                    'mois' => $mois,
+                    'annee' => $annee,
+                ];
+                if (Pret::remboursement($id_pret,true)) {
+                    $inserted[] = RemboursementModel::create($entry);
+                }
+                if(!Interet::getByIdParMois($entry)){
+                    $inserted[] = Interet::saveInteretParRemboursement($id_pret,$entry);
+                }
+            } 
+            else{
+                Flight::json(['message' => 'Remboursements deja effectue pour cette date']);        
             }
             $mois++;
             if ($mois > 12) {

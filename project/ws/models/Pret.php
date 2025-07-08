@@ -74,6 +74,27 @@ class Pret
             return false;
         }
     }
+    public static function verifyPresenece($id_pret, $mois, $annee) {
+        $db = getDB();
+    
+        $date_cible = sprintf('%04d-%02d-01', $annee, $mois);
+    
+        $stmt = $db->prepare('
+            SELECT * FROM presence 
+            WHERE id_pret = :id_pret 
+            AND date_debut <= :date_cible
+            LIMIT 1
+        ');
+        $stmt->execute([
+            ':id_pret' => $id_pret,
+            ':date_cible' => $date_cible
+        ]);
+    
+        $presence = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        return $presence !== false;
+    }
+    
     public static function remboursement($id,$assurance)
     {
         $db = getDB();
