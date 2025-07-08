@@ -12,12 +12,9 @@
   </style>
 </head>
 <body>
-  <head>
-    <?php include("fragment/navigation.php"); ?>
-  </head>
 
   <h1>Gestion des fonds de l'établissement</h1>
-  <a href="type_pret.html">Type pret</a>
+  <a href=""></a>
   <div>
     <input type="hidden" id="id_fonds">
     <input type="date" id="date_ajout" placeholder="Date d'ajout">
@@ -39,7 +36,7 @@
   </table>
 
   <script>
-    const apiBase = "http://localhost/Projet_banque/project/ws";
+    const apiBase = "http://localhost:8000";
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();
@@ -66,7 +63,7 @@
             <td>${f.source}</td>
             <td>${f.description}</td>
             <td>
-              <button onclick='remplirFormulaire(${f})'>✏️</button>
+              <button onclick='remplirFormulaire(${JSON.stringify(f)})'>✏️</button>
               <button onclick='supprimerFonds(${f.id_fonds_etablissement})'>🗑️</button>
             </td>
           `;

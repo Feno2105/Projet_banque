@@ -90,13 +90,13 @@
           }
         }
       };
-      xhr.send(data);
+      xhr.send(data ? JSON.stringify(data) : null);
     }
 
     function chargerEtudiants() {
       ajax("GET", "/prets", null, (data) => {
         allLoans = data; // Stocke tous les prêts
-        displayLoans(data);
+        displayLoans(allLoans);
       }, (error) => {
         console.error("Erreur lors du chargement:", error);
         alert("Erreur lors du chargement des données");
@@ -109,7 +109,9 @@
       loans.forEach(e => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td>${e.email}</td>
+          <td>
+            <a href="ws/views/profil.php?id=${e.client_id}" target="_blank">${e.email}</a>
+          </td>
           <td>${e.nom_type_pret}</td>
           <td>${e.montant}</td>
           <td>${e.reste_a_payer}</td>
