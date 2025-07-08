@@ -10,7 +10,7 @@ class Interet
     public static function getAll()
     {
         $db = getDB();
-        $stmt = $db->query('select * from view_interet ORDER BY date_debut DESC');
+        $stmt = $db->query('select * from interet ORDER BY date_debut DESC');
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
