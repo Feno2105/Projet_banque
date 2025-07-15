@@ -1,6 +1,3 @@
--- Base de données : tp_flight
-CREATE DATABASE IF NOT EXISTS tp_flight;
-USE tp_flight;
 
 CREATE TABLE IF NOT EXISTS source_fond (
     id_source_fond INT AUTO_INCREMENT PRIMARY KEY,
@@ -17,15 +14,21 @@ CREATE TABLE IF NOT EXISTS fonds_etablissement (
     FOREIGN KEY (source) REFERENCES source_fond(id_source_fond)
 );
 
+
 -- Table 2 : Types de prêt avec taux et durée
 CREATE TABLE IF NOT EXISTS type_pret (
     id_type_pret INT AUTO_INCREMENT PRIMARY KEY,
+    valeur_assurance DECIMAL(5,2) NOT NULL,
     nom_type_pret VARCHAR(100) NOT NULL,
     taux_interet DECIMAL(5,2) NOT NULL,
     duree_mois INT NOT NULL,
     montant_min DECIMAL(15,2),
     montant_max DECIMAL(15,2)
 );
+-- ALTER TABLE type_pret
+-- ADD COLUMN valeur_assurance DECIMAL(5,2) NOT NULL DEFAULT 0;
+-- UPDATE type_pret
+-- SET valeur_assurance = 1;
 
 -- Table 3 : Clients
 CREATE TABLE IF NOT EXISTS client (
@@ -44,6 +47,8 @@ CREATE TABLE IF NOT EXISTS statut_pret (
     UNIQUE KEY (libelle)  -- Évite les doublons de libellés
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+
 -- Table 4 : Prêts accordés aux clients
 CREATE TABLE IF NOT EXISTS pret (
     id_pret INT AUTO_INCREMENT PRIMARY KEY,
@@ -52,8 +57,8 @@ CREATE TABLE IF NOT EXISTS pret (
     montant DECIMAL(15,2),
     reste_a_payer DECIMAL(15,2),
     date_debut DATE DEFAULT CURRENT_DATE,
+    mensualite DECIMAL(15,2),  -- Ajout de la mensualité
     statut INT,
-    isValidated BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (client_id) REFERENCES client(id_client),
     FOREIGN KEY (type_pret_id) REFERENCES type_pret(id_type_pret),
     FOREIGN KEY (statut) REFERENCES statut_pret(id_statut_pret)
@@ -90,7 +95,32 @@ CREATE TABLE IF NOT EXISTS fonds_client (
     solde DECIMAL(15,2) NOT NULL,
     FOREIGN KEY (client_id) REFERENCES client(id_client)
 );
+CREATE TABLE remboursement (
+    id_remboursement INT AUTO_INCREMENT PRIMARY KEY,
+    id_pret INT,
+    mois INT NOT NULL CHECK (mois BETWEEN 1 AND 12),
+    annee INT NOT NULL,
+    FOREIGN KEY (id_pret) REFERENCES pret(id_pret)
+);
 
+CREATE TABLE interet(
+    id_interet INT PRIMARY KEY AUTO_INCREMENT,
+    id_pret INT ,
+    mois_debut INT,
+    annee_debut INT,
+    mois_fin INT,
+    annee_fin INT,
+    valeur DECIMAL(15,2),
+    FOREIGN KEY (id_pret) REFERENCES pret(id_pret)
+);
+CREATE TABLE interet_par_mois(
+    id_interet_par_mois INT AUTO_INCREMENT PRIMARY KEY,
+    id_pret INT,
+    mois INT NOT NULL CHECK (mois BETWEEN 1 AND 12),
+    annee INT,
+    valeur DECIMAL(15,2),
+    FOREIGN KEY (id_pret) REFERENCES pret(id_pret)
+);
 -- PRET FULL INFO
 
 -- VIEWS
@@ -102,3 +132,27 @@ CREATE VIEW view_pret AS
             statut_pret s ON s.id_statut_pret = p.statut
         JOIN type_pret tp ON tp.id_type_pret = p.type_pret_id;
 
+
+
+
+CREATE OR REPLACE VIEW vue_interet_global AS
+SELECT 
+    p.id_pret,
+    i.valeur AS interet_total
+FROM pret p
+JOIN interet i ON i.id_pret = p.id_pret;
+
+--view 2 --
+CREATE OR REPLACE VIEW view_fond_restant AS
+SELECT 
+    c.id_client AS id_utilisateur,
+    COALESCE(SUM(fe.montant), 0) AS mef,
+    COALESCE(SUM(p.montant), 0) AS mp,   
+    COALESCE(SUM(p.montant - p.reste_a_payer), 0) AS p, 
+    COALESCE(SUM(fe.montant), 0) - COALESCE(SUM(p.montant), 0) + COALESCE(SUM(p.montant - p.reste_a_payer), 0) AS solde
+FROM 
+    client c
+LEFT JOIN pret p ON p.client_id = c.id_client
+LEFT JOIN fonds_etablissement fe ON fe.source = c.id_client 
+GROUP BY 
+    c.id_client;

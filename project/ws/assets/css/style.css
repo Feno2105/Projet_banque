@@ -1,0 +1,1455 @@
+/* Thème Banque - Variables */
+:root {
+  --primary-color: #005f87; /* Bleu marine */
+  --secondary-color: #0088cc; /* Bleu clair */
+  --accent-color: #ff6b35; /* Orange vif */
+  --light-color: #f8f9fa; /* Gris très clair */
+  --dark-color: #343a40; /* Gris foncé */
+  --text-light: #ffffff; /* Blanc */
+  --text-dark: #212529; /* Noir */
+  --success-color: #28a745; /* Vert */
+  --danger-color: #dc3545; /* Rouge */
+  --warning-color: #ffc107; /* Jaune */
+}
+
+/* Navigation verticale */
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding-top: 20px;
+  z-index: 1000;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .nav-link {
+  color: var(--text-light);
+  padding: 12px 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin: 5px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.sidebar .nav-link i {
+  margin-right: 10px;
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar .nav-link.active {
+  background-color: var(--secondary-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Structure principale */
+.col-md-3.col-lg-2 {
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--dark-color);
+}
+
+.col-md-9.col-lg-10 {
+  padding: 30px;
+  min-height: 100vh;
+  background-color: var(--light-color);
+}
+
+/* En-tête de page */
+.page-header {
+  background-color: white;
+  padding: 25px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--accent-color);
+}
+
+.page-header h1 {
+  color: var(--primary-color);
+  margin: 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+/* Cartes */
+.card {
+  margin-bottom: 25px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-top: 3px solid var(--primary-color);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: white;
+  color: var(--primary-color);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 15px 25px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-body {
+  padding: 25px;
+}
+
+/* Tableaux */
+.table {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.03);
+}
+
+.table th {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  padding: 15px;
+  vertical-align: middle;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* Boutons */
+.btn {
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Formulaires */
+.form-control {
+  padding: 12px 15px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 0.2rem rgba(0, 136, 204, 0.25);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Badges */
+.badge {
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: 50px;
+  font-size: 0.8rem;
+}
+
+.badge-success {
+  background-color: var(--success-color);
+}
+
+.badge-danger {
+  background-color: var(--danger-color);
+}
+
+.badge-warning {
+  background-color: var(--warning-color);
+  color: var(--text-dark);
+}
+
+/* Icônes */
+.icon-lg {
+  font-size: 1.8rem;
+  margin-right: 15px;
+  color: var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .sidebar {
+      width: 70px;
+      overflow: hidden;
+  }
+  .sidebar .nav-link span {
+      display: none;
+  }
+  .sidebar .nav-link i {
+      margin-right: 0;
+      font-size: 1.3rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+
+/* ====================== */
+/* STRUCTURE PRINCIPALE */
+/* ====================== */
+
+.bank-app {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-color);
+  color: var(--text-dark);
+}
+
+.main-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  margin-left: 250px; /* Largeur de la sidebar */
+  transition: margin-left 0.3s;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .main-content {
+      margin-left: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+      margin-left: 0;
+      padding: 1rem;
+  }
+}
+
+/* ====================== */
+/* ELEMENTS SPECIFIQUES */
+/* ====================== */
+
+/* En-tête de page */
+.page-header {
+  background-color: white;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--accent-color);
+}
+
+.page-title {
+  color: var(--primary-color);
+  margin: 0;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.page-title i {
+  margin-right: 0.75rem;
+  color: var(--accent-color);
+}
+
+
+/* ====================== */
+/* NAVIGATION BANCAIRE */
+/* ====================== */
+
+.bank-nav {
+  width: 250px;
+  height: 100vh;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem 0;
+}
+
+.bank-logo {
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bank-logo i {
+  font-size: 1.8rem;
+  margin-right: 0.75rem;
+  color: var(--accent-color);
+}
+
+.bank-logo span {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.nav-links {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+
+.nav-link {
+  color: var(--text-light);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.active {
+  background-color: var(--secondary-color);
+  font-weight: 500;
+}
+
+.nav-link i {
+  width: 24px;
+  text-align: center;
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.nav-footer {
+  padding: 1rem 1.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.logout-btn {
+  color: var(--text-light);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.logout-btn i {
+  margin-right: 0.75rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .bank-nav {
+      width: 70px;
+  }
+  .bank-logo span,
+  .nav-link span,
+  .logout-btn span {
+      display: none;
+  }
+  .bank-logo {
+      justify-content: center;
+      padding: 0 0 1.5rem;
+  }
+  .bank-logo i {
+      margin-right: 0;
+      font-size: 1.5rem;
+  }
+  .nav-link i {
+      margin-right: 0;
+      font-size: 1.3rem;
+  }
+}
+
+/* Structure principale améliorée */
+.main-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  margin-left: 250px; /* Doit correspondre à la largeur de votre sidebar */
+  transition: all 0.3s ease;
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .main-content {
+      margin-left: 80px;
+      padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+      margin-left: 0;
+      padding: 1rem;
+  }
+}
+
+
+/* ====================== */
+/* STYLES POUR LA GESTION DES PRÊTS */
+/* ====================== */
+
+.bank-loan-container {
+  padding: 20px;
+}
+
+.loan-form-card {
+  border-top: 3px solid var(--accent-color);
+}
+
+.loan-form-card .card-header {
+  background-color: rgba(0, 95, 135, 0.05);
+  color: var(--primary-color);
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  padding: 0 10px;
+}
+
+/* Tableau des prêts */
+.table-responsive {
+  overflow-x: auto;
+}
+
+#table-etudiants th {
+  white-space: nowrap;
+}
+
+#table-etudiants td {
+  vertical-align: middle;
+}
+
+/* Badges pour les statuts */
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-pending {
+  background-color: var(--warning-color);
+  color: var(--text-dark);
+}
+
+.status-approved {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.status-rejected {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+/* Boutons d'action */
+.action-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.action-buttons button {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-row {
+      flex-direction: column;
+  }
+  
+  .form-group {
+      width: 100%;
+  }
+  
+  .card-header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+  
+  .search-container {
+      width: 100%;
+      margin-top: 10px;
+  }
+}
+
+
+/* ====================== */
+/* STYLES POUR LA PAGE DE DETAILS DE PRET */
+/* ====================== */
+
+.bank-document-container {
+  padding: 2rem;
+}
+
+.document-card {
+  border-top: 3px solid var(--accent-color);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+.document-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.loan-details {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+.loan-section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.section-divider {
+  border: 0;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+}
+
+.loan-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.info-item {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.info-label {
+  font-weight: 600;
+  color: var(--primary-color);
+  min-width: 100px;
+}
+
+.info-value {
+  color: var(--dark-color);
+}
+
+.loan-text {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--light-color);
+}
+
+.signature-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.signature-item {
+  width: 45%;
+  text-align: center;
+}
+
+.signature-line {
+  height: 1px;
+  background-color: #000;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.signature-line:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  position: absolute;
+  top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .loan-info-grid {
+      grid-template-columns: 1fr;
+  }
+  
+  .signature-container {
+      flex-direction: column;
+  }
+  
+  .signature-item {
+      width: 100%;
+      margin-bottom: 2rem;
+  }
+}
+
+
+/* ====================== */
+/* PAGE D'ACCUEIL BANCAIRE */
+/* ====================== */
+
+.bank-homepage {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.bank-hero {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Features Grid */
+.bank-features {
+  padding: 5rem 2rem;
+  background-color: var(--light-color);
+}
+
+.section-title {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.section-title:after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--accent-color);
+  margin: 1rem auto;
+}
+
+.section-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  font-size: 1.1rem;
+  color: var(--text-light);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card.highlight {
+  border-top: 4px solid var(--accent-color);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.feature-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.feature-link {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+/* About Section */
+.bank-about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+  background: white;
+}
+
+.about-content {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.commitment-list {
+  margin: 2rem 0;
+  list-style: none;
+  padding: 0;
+}
+
+.commitment-list li {
+  margin-bottom: 1rem;
+  padding-left: 2.5rem;
+  position: relative;
+}
+
+.commitment-list i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent-color);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.about-image {
+  background: var(--light-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Testimonials */
+.bank-testimonials {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+}
+
+.testimonials-slider {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 3rem auto 0;
+}
+
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.testimonial-content {
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.testimonial-content:before,
+.testimonial-content:after {
+  content: '"';
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.testimonial-author {
+  font-weight: 600;
+}
+
+.author-title {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* CTA Section */
+.bank-cta {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: var(--dark-color);
+  color: white;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bank-about {
+      grid-template-columns: 1fr;
+  }
+  
+  .about-content {
+      padding: 2rem;
+  }
+  
+  .hero-title {
+      font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+      font-size: 1.2rem;
+  }
+}
+
+
+/* Styles pour les boutons d'action */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-rembourser {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-rembourser:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-details {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-details:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Boutons Valider/Refuser */
+.btn-success {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+/* ====================== */
+/* GESTION DES FONDS */
+/* ====================== */
+
+.bank-funds-container {
+  padding: 2rem;
+}
+
+.fund-form-card {
+  border-top: 3px solid var(--accent-color);
+}
+
+.fund-form-card .card-header {
+  background-color: rgba(0, 95, 135, 0.05);
+  color: var(--primary-color);
+}
+
+/* Tableau des fonds */
+#table-fonds th {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+#table-fonds td {
+  vertical-align: middle;
+}
+
+/* Boutons d'action */
+.fund-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-edit {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+  background-color: #0069d9;
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+/* Montant positif/négatif */
+.positive-amount {
+  color: var(--success-color);
+  font-weight: 600;
+}
+
+.negative-amount {
+  color: var(--danger-color);
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-row {
+      flex-direction: column;
+  }
+  
+  .form-group {
+      width: 100%;
+      margin-bottom: 1rem;
+  }
+  
+  .fund-actions {
+      flex-direction: column;
+      gap: 5px;
+  }
+}
+
+
+/* ====================== */
+/* GESTION DES TYPES DE PRÊT */
+/* ====================== */
+
+.bank-loan-types-container {
+  padding: 2rem;
+}
+
+.loan-type-form-card {
+  border-top: 3px solid var(--accent-color);
+}
+
+.loan-type-form-card .card-header {
+  background-color: rgba(0, 95, 135, 0.05);
+  color: var(--primary-color);
+}
+
+/* Tableau des types de prêt */
+#table-type-pret th {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+#table-type-pret td {
+  vertical-align: middle;
+}
+
+/* Style des taux */
+.interest-rate {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Boutons d'action */
+.loan-type-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-edit-loan-type {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-edit-loan-type:hover {
+  background-color: #0069d9;
+  transform: translateY(-1px);
+}
+
+.btn-delete-loan-type {
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-delete-loan-type:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .form-row {
+      flex-direction: column;
+  }
+  
+  .form-group {
+      width: 100%;
+      margin-bottom: 1rem;
+  }
+  
+  .loan-type-actions {
+      flex-direction: column;
+      gap: 5px;
+  }
+}
+
+
+/* ====================== */
+/* PROFIL CLIENT */
+/* ====================== */
+
+.client-profile-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-photo {
+  flex-shrink: 0;
+}
+
+.photo-placeholder {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: var(--light-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-size: 5rem;
+  border: 3px solid var(--primary-color);
+}
+
+.profile-info {
+  flex-grow: 1;
+}
+
+.client-name {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.1rem;
+}
+
+.contact-item i {
+  color: var(--accent-color);
+  width: 20px;
+  text-align: center;
+}
+
+.profile-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.detail-card {
+  background: var(--light-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border-top: 3px solid var(--accent-color);
+}
+
+.detail-card h2 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.detail-card h2 i {
+  color: var(--accent-color);
+}
+
+.detail-content {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 1.5rem;
+  }
+  
+  .contact-info {
+      align-items: center;
+  }
+  
+  .profile-details {
+      grid-template-columns: 1fr;
+  }
+}
+
+
+/* ====================== */
+/* PAGE DE REMBOURSEMENT */
+/* ====================== */
+
+.remboursement-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.remboursement-card {
+  border-top: 3px solid var(--accent-color);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.remboursement-card .card-header {
+  background-color: rgba(0, 95, 135, 0.05);
+  color: var(--primary-color);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Styles spécifiques au formulaire */
+#remboursement-form {
+  padding: 1rem;
+}
+
+#remboursement-form label {
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+#remboursement-form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1em;
+}
+
+/* Bouton de soumission */
+.btn-plan {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-plan:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-row {
+      flex-direction: column;
+  }
+  
+  .form-group {
+      width: 100%;
+      margin-bottom: 1rem;
+  }
+}
+
+/* ====================== */
+/* PAGE DE SIMULATION */
+/* ====================== */
+
+.simulation-container {
+  padding: 2rem;
+}
+
+.simulation-form-card {
+  border-top: 3px solid var(--accent-color);
+}
+
+.simulation-form-card .card-header {
+  background-color: rgba(0, 95, 135, 0.05);
+  color: var(--primary-color);
+}
+
+/* Tableau des simulations */
+#table-prets th {
+  white-space: nowrap;
+}
+
+#table-prets td {
+  vertical-align: middle;
+}
+
+/* Boutons d'action */
+.simulation-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-simulation {
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-modify {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+}
+
+.btn-modify:hover {
+  background-color: #0069d9;
+  transform: translateY(-1px);
+}
+
+.btn-add {
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+}
+
+.btn-add:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+}
+
+/* Montants */
+.amount {
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-row {
+      flex-direction: column;
+  }
+  
+  .form-group {
+      width: 100%;
+      margin-bottom: 1rem;
+  }
+  
+  .simulation-actions {
+      flex-direction: column;
+  }
+}

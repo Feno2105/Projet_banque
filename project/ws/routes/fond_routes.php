@@ -6,3 +6,4 @@ Flight::route('GET /fonds/@id', ['FondController', 'getById']);
 Flight::route('POST /fonds', ['FondController', 'create']);
 Flight::route('PUT /fonds/@id', ['FondController', 'update']);
 Flight::route('DELETE /fonds/@id', ['FondController', 'delete']);
+Flight::route('POST /fondtab', ['FondController', 'getFonds']);

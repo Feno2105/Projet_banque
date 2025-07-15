@@ -7,27 +7,34 @@
     ('Carlos Mendoza', 'carlos.mendoza@example.es', '+34612345678', 'Calle Mayor 23, Madrid, Espagne');
 
 
-INSERT INTO type_pret (nom_type_pret, taux_interet, duree_mois, montant_min, montant_max)
+INSERT INTO type_pret (nom_type_pret, valeur_assurance ,taux_interet, duree_mois, montant_min, montant_max)
 VALUES
-  ('Prêt Personnel', 5.50, 24, 1000.00, 20000.00),
-  ('Prêt Immobilier', 3.20, 240, 50000.00, 500000.00),
-  ('Crédit Auto', 4.80, 60, 3000.00, 50000.00),
-  ('Microcrédit', 7.00, 12, 100.00, 1500.00);
+  ('Prêt Personnel',2.0, 5.50, 24, 1000.00, 20000.00),
+  ('Prêt Immobilier',0.5, 3.20, 240, 50000.00, 500000.00),
+  ('Crédit Auto',1.5, 4.80, 60, 3000.00, 50000.00),
+  ('Microcrédit', 0.25,7.00, 12, 100.00, 1500.00);
 
 
 INSERT INTO statut_pret (libelle) VALUES
   ('En cours'),   -- id = 1
-  ('Terminé'),    -- id = 2
-  ('En retard');  -- id = 3
+  ('Terminé'),
+  ('Sauvegarde'),    -- id = 2
+  ('Simule');  -- id = 3
+INSERT INTO source_fond (nom_source) VALUES ('Budget de l\'État');
+INSERT INTO source_fond (nom_source) VALUES ('Subvention privée');
+INSERT INTO source_fond (nom_source) VALUES ('Partenariat international');
+INSERT INTO source_fond (nom_source) VALUES ('Contribution des parents');
+INSERT INTO source_fond (nom_source) VALUES ('Autofinancement');
 
 
-INSERT INTO pret (client_id, type_pret_id, montant, reste_a_payer, date_debut, statut)
+INSERT INTO pret (client_id, type_pret_id, montant, reste_a_payer, date_debut, statut, mensualite)
 VALUES
-  (1, 1, 5000.00, 3200.00, '2025-04-01', 1),
-  (2, 2, 150000.00, 140000.00, '2023-06-15', 1),
-  (3, 3, 20000.00, 0.00, '2022-09-10', 2),
-  (4, 4, 800.00, 800.00, '2025-06-01', 1),
-  (5, 1, 10000.00, 5000.00, '2024-01-20', 3);
+  (1, 1, 5000.00, 3200.00, '2025-04-01', 1, 220.00),
+  (2, 2, 150000.00, 140000.00, '2023-06-15', 1, 1200.00),
+  (3, 3, 20000.00, 0.00, '2022-09-10', 2, 400.00),
+  (4, 4, 800.00, 800.00, '2025-06-01', 1, 75.00),
+  (5, 1, 10000.00, 5000.00, '2024-01-20', 3, 350.00);
+  
 
 INSERT INTO source_fond (nom_source) VALUES ('Budget de l\'État');
 INSERT INTO source_fond (nom_source) VALUES ('Subvention privée');
